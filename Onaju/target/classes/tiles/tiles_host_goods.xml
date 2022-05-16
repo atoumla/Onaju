@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="/host/goods/gList" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 목록" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/gList.jsp" />
+	</definition>
+	
+	<definition name="/host/goods/gInsert" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 등록" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/gInsert.jsp" />
+	</definition>
+	
+	<definition name="/host/goods/gUpdate" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 수정" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/gUpdate.jsp" />
+	</definition>
+	
+	<definition name="/host/goods/gDelete" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 삭제" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/gDelete.jsp" />
+	</definition>
+	
+	<definition name="/host/goods/gON_OFF" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 온오프" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/gON_OFF.jsp" />
+	</definition>
+	<definition name="/host/goods/addNewGoodsForm" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 온오프" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/addNewGoodsForm.jsp" />
+	</definition>
+	
+	<definition name="/host/goods/hostInfoForm" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 목록" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/hostInfoForm.jsp" />
+	</definition>
+	<definition name="/host/goods/hostInfoList" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 목록" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/hostInfoList.jsp" />
+	</definition>
+	
+	
+		<definition name="/host/goods/searchGoodsMap" extends="baseLayout">
+		<put-attribute name="title" value="쇼핑몰 메인페이지" />
+		<put-attribute name="body" value="/WEB-INF/views//goods/searchGoodsMap.jsp" />
+	</definition>
+	
+		<definition name="/host/goods/goodsDetail" extends="baseLayout">
+		<put-attribute name="title" value="쇼핑몰 메인페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/goods/goodsInformation_1.jsp" />
+	</definition>
+	
+	
+</tiles-definitions>	

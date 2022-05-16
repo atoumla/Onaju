@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="/host/mypage/mypage" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 목록" />
+		<put-attribute name="body" value="/WEB-INF/views/host/mypage/mypage.jsp" />
+	</definition>
+	
+	<!-- <definition name="/host/mypage/hostInfoForm" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 목록" />
+		<put-attribute name="body" value="/WEB-INF/views/host/mypage/hostInfoForm.jsp" />
+	</definition>
+	<definition name="/host/mypage/hostInfoList" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 목록" />
+		<put-attribute name="body" value="/WEB-INF/views/host/mypage/hostInfoList.jsp" />
+	</definition>
+	 -->
+	
+</tiles-definitions>	

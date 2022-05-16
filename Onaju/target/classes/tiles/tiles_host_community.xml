@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="/host/community/cmnList" extends="hostLayout">
+		<put-attribute name="title" value="호스트 공지사항" />
+		<put-attribute name="body" value="/WEB-INF/views/host/community/cmnList.jsp" />
+	</definition>
+
+	<definition name="/host/community/cmnAticleForm" extends="hostLayout">
+		<put-attribute name="title" value="호스트 공지사항" />
+		<put-attribute name="body" value="/WEB-INF/views/host/community/cmnAticleForm.jsp" />
+	</definition>
+	
+	
+	
+	
+	
+</tiles-definitions>
+

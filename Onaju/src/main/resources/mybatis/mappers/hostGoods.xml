@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.hostGoods">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="hostInfo" type="HostInfoVO">
+		<result property="h_code" column="h_code" />
+		<result property="h_id" column="h_id" />
+		<result property="hostInfo_name" column="hostInfo_name" />
+		
+		<result property="h_sellerNum" column="h_sellerNum" />
+		<result property="h_accountNum" column="h_accountNum" />
+		
+		<result property="zipcode" column="zipcode" />
+		<result property="roadAddress" column="roadAddress" />
+		<result property="numberAddress" column="numberAddress" />
+		<result property="restAddress" column="restAddress" />
+		<result property="host_type" column="host_type" />
+		<result property="room_count" column="room_count" />
+	</resultMap>	
+	
+	<resultMap id="goodsResult" type="HostGoodsVO">
+				<result property="h_name" column="h_name" />
+		
+		<result property="hostInfo_name" column="hostInfo_name" />
+		<result property="zipcode" column="zipcode" />
+		<result property="roadAddress" column="roadAddress" />
+		<result property="numberAddress" column="numberAddress" />
+		<result property="restAddress" column="restAddress" />
+		<result property="host_type" column="host_type" />
+		<result property="room_count" column="room_count" />
+	
+		<result property="room_code" column="room_code" />
+		<result property="h_code" column="h_code" />
+		<result property="h_id" column="h_id" />
+		<result property="room_type" column="room_type" />
+		<result property="room_number" column="room_number" />
+		<result property="room_fee" column="room_fee" />
+		<result property="able_checkIn" column="able_checkIn" />
+		<result property="able_checkOut" column="able_checkOut" />
+		<result property="room_status" column="room_status" />
+		
+		<result property="title" column="title" />
+		<result property="min_number" column="min_number" />
+		<result property="max_number" column="max_number" />
+		<result property="bed_type" column="bed_type" />
+		<result property="bed_count" column="bed_count" />
+		<result property="bath_count" column="bath_count" />
+		<result property="party_check" column="party_check" />
+		<result property="kitchen" column="kitchen" />
+		<result property="wifi" column="wifi" />
+		<result property="parking" column="parking" />
+		<result property="tv" column="tv" />
+		<result property="refrigerator" column="refrigerator" />
+		<result property="hairdryer" column="hairdryer" />
+		<result property="washer" column="washer" />
+		<result property="pet" column="pet" />
+		<result property="pickup" column="pickup" />
+		<result property="dryer" column="dryer" />
+		<result property="elevator" column="elevator" />
+		<result property="barbecue" column="barbecue" />
+		<result property="pool" column="pool" />
+		<result property="aircon" column="aircon" />
+		<result property="heater" column="heater" />
+		<result property="smoking" column="smoking" />
+		<result property="content" column="content" javaType="java.lang.String" jdbcType="CLOB"  />
+		<result property="creDate" column="creDate" />
+		<result property="room_imageName" column="room_imageName" />
+		
+</resultMap>		
+	<resultMap id="imageResult" type="hostImageFileVO">
+		<result property="roomImage_NO" column="roomImage_NO" />
+		<result property="room_code" column="room_code" />
+		<result property="room_imageName" column="room_imageName" />
+		<result property="room_imageType" column="room_imageType" />
+		<result property="h_id" column="h_id" />
+		
+	</resultMap>
+
+
+
+<!-- 로그인 -->
+	<select id="hostLogin" resultType="hostInfoVO"  parameterType="String"  >
+	    <![CDATA[
+				select * from h_host_info  where h_id=#{h_id}
+		]]>
+	</select>
+	
+
+
+  <select id="selectHostInfoList" resultMap="hostInfo"   parameterType="String"  >
+	    <![CDATA[
+		    select * from h_host_info
+            where h_id=#{h_id}
+    	]]>
+	</select>	
+
+
+	<!-- 상품리스트 조회 -->
+	<select id="hostGoodsList" resultMap="goodsResult"  parameterType="java.util.Map" >
+	  
+				select R.*, I.room_imageName, H.* from h_room R, h_roomimage I, h_host_info H  
+					where R.room_code=I.room_code 
+					and R.h_code=H.h_code
+        	        and I.room_imageType='main_image'
+        	                <if test="room_type=='hotel'">
+			                  AND room_type=#{}
+			                </if>
+	
+	</select>
+	
+	
+	
+	<!-- 상품상세 조회 -->
+	<select id="hostGoodsDetail" resultMap="goodsResult"  parameterType="String"  >
+	    <![CDATA[
+				select *, T.h_name, F.room_imageName from h_room R , h_roomimage F, h_host_info H , h_host T 
+				where F.room_imageType = 'main_image'
+				and R.room_code= #{room_code}
+				and F.room_code = R.room_code
+				and R.h_code=H.h_code
+				and R.h_id = T.h_id 
+		]]>
+	</select>
+	<!-- 호스트 사업자 등록-->	
+<insert id="insertNewHostInfo"  parameterType="HostInfoVO">
+	  <!-- <selectKey resultType="int" keyProperty="h_code" order="BEFORE"> 
+	 
+			SELECT  MAX(h_code)+1 FROM h_host_info
+	 </selectKey>   -->
+  <![CDATA[
+    	insert into h_host_info(
+			 					h_id,
+                                hostInfo_name,
+                                h_sellerNum,
+                                h_accountNum,
+                                zipcode,
+                                roadAddress,
+                                numberAddress,
+                                restAddress,
+                                host_type,
+                                room_count
+                                )
+							 values(
+									#{h_id},
+									#{hostInfo_name},
+                                 	#{h_sellerNum},
+                                   	#{h_accountNum},
+                                   	#{zipcode},
+                                    #{roadAddress},
+                                    #{numberAddress},
+                                    #{restAddress},
+                                    #{host_type},
+                                    #{room_count}
+                                   )
+                                  
+                                      
+   ]]>      
+  </insert>
+	
+		
+	
+
+	<!-- 상품 등록(한거)-->	
+	<insert id="insertNewGoods" parameterType="java.util.Map"  >
+				<!-- useGeneratedKeys="true" keyProperty="room_code">  -->
+	 <selectKey resultType="int" keyProperty="room_code" order="BEFORE">
+			SELECT MAX(room_code) +1 FROM h_room 
+
+		    </selectKey>  
+	    
+	    <![CDATA[
+		   insert into h_room(  
+				                h_code, 
+		                  		h_id,
+		                   		room_type,
+		                    	room_number,
+								room_fee,
+								able_checkIn,
+		                    	able_checkOut,
+								room_status,
+								
+								title,
+		                    	min_number,
+								max_number,
+								bed_type,
+		                    	bed_count,
+								bath_count,
+								party_check,
+		                    	kitchen,
+								wifi,
+								parking,
+								tv,
+		                    	refrigerator,
+								hairdryer,
+								washer,
+		                    	pet,
+								pickup,
+								dryer,
+								elevator,
+								barbecue,
+		                    	pool,
+								aircon,
+								heater,
+								smoking,
+		                    	content
+		                    	)
+		                    	
+    				  
+				    				  			values  (   
+							    				  			#{h_code},
+															#{h_id},
+															#{room_type},
+															#{room_number},
+															#{room_fee},
+															#{able_checkIn},
+															#{able_checkOut},
+															#{room_status},
+															
+															#{title},
+							    				  			#{min_number},
+															#{max_number},
+															#{bed_type},
+															#{bed_count},
+															#{bath_count},
+															#{party_check},
+															#{kitchen},
+															#{wifi},
+															#{parking},
+															#{tv},
+							    				  			#{refrigerator},
+															#{hairdryer},
+															#{washer},
+															#{pet},
+															#{pickup},
+															#{dryer},
+															#{elevator},
+															#{barbecue},
+															#{pool},
+							    				  			#{aircon},
+															#{heater},
+															#{smoking},
+															#{content}	
+				    				  		  )   				  		  									  
+   		]]>
+	</insert>
+	<insert id="insertGoodsImageFile" parameterType="HostImageFileVO"   >
+		<!-- <selectKey resultType="int" keyProperty="roomImage_NO" order="BEFORE">
+	    	SELECT MAX(roomImage_NO)+1 FROM h_roomImage
+	    </selectKey> -->
+	    <![CDATA[
+		   insert into h_roomImage(
+		   							
+		                            room_code,
+		                            room_imageName,
+		                            room_imageType,
+		                            h_code
+		                            )
+											  values(
+											  		
+											   		#{room_code},
+											   		#{room_imageName},
+											   		#{room_imageType},
+											   		#{h_code} 
+											   		)
+		]]>
+	</insert> 
+	
+	
+	
+
+   
+   
+	<select id="selectHostGoodsDetailImage" resultMap="imageResult"   parameterType="String"  >
+	    <![CDATA[
+		    	select g.room_code,d.*, d.room_imageType from h_room g, h_roomimage d
+	        where g.room_code=d.room_code
+	        and d.room_code=#{room_code}
+	       
+	       
+    	]]>
+	</select>
+	
+   
+</mapper>
