@@ -69,13 +69,13 @@
 	<!-- 아이디 찾기 -->
 	<select id="h_idFind" resultType="hostVO"  parameterType="java.util.Map"  >
 	    <![CDATA[
-				select * from h_host  where h_name=#{h_name} and h_phone=#{h_phone} and h_email1=#{h_email1} and h_email2=#{h_email2}
+				select h_id from h_host  where h_name=#{h_name} and h_phone=#{h_phone} and h_email1=#{h_email1} and h_email2=#{h_email2}
 		]]>
 	</select>
 	<!--비밀번호 찾기 -->
 	<select id="h_pwdFind" resultType="hostVO"  parameterType="java.util.Map"  >
 	    <![CDATA[
-				select * from h_host  where h_id=#{h_id} and h_name=#{h_name} and h_phone=#{h_phone} and h_email1=#{h_email1} and h_email2=#{h_email2}
+				select h_pw from h_host  where h_id=#{h_id} and h_name=#{h_name} and h_phone=#{h_phone} and h_email1=#{h_email1} and h_email2=#{h_email2}
 		]]>
 	</select>
 	<!--비밀번호 변경하기 -->

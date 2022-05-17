@@ -118,6 +118,7 @@ request.setCharacterEncoding("UTF-8");
  					<li class="ohnaju-li"><a href="${contextPath }/host/mypage/mypage.do">호스트 정보 수정</a></li>
  					<li class="ohnaju-li"><a href="${contextPath }/host/goods/hostInfoList.do">사업장 목록</a></li>
  					<li class="ohnaju-li"><a href="${contextPath }/host/goods/hostInfoForm.do">사업장 등록</a></li>
+ 					
  			   </ul>
  		</li>
  		<li class="ohnaju-li">
@@ -130,12 +131,12 @@ request.setCharacterEncoding("UTF-8");
  		</li>
  		<li class="ohnaju-li"><a href="#"  class="ohnaju-third-btn"><i style="color:#7f9b75"  class="fa-solid fa-hotel"></i>&emsp;상품 관리</a>
  			<ul class="ohnaju-third-show">
- 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/addNewGoodsForm.do">상품 등록 작성중</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gList.do">상품 목록</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gInsert.do">상품 등록</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gUpdate.do">상품 수정</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gDelete.do">상품 삭제</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gON_OFF.do">숙박 ON/OFF</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/addNewGoodsForm.do">상품 등록</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/hostGoodsList.do">상품 목록 작성중</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gInsert.do">기존 상품 등록</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gUpdate.do">기존 상품 수정</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gDelete.do">기존 상품 삭제</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gON_OFF.do">기존 숙박 ON/OFF</a></li>
  				
  			</ul>
  		</li>
@@ -147,9 +148,9 @@ request.setCharacterEncoding("UTF-8");
  		</li> 		
  		<li class="ohnaju-li"><a href="#" class="ohnaju-fifth-btn"><i style="color:#7f9b75"  class="fa-solid fa-children"></i>&emsp;커뮤니티 관리</a>
  			<ul class="ohnaju-fifth-show">
- 				<li class="ohnaju-li"><a href="${contextPath }/host/community/cmnList.do">Life Style 목록</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/center/qnaList.do">임시</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/center/dropOut.do">임시</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/community/hostAllCommunityList.do">Life Style 목록</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/community/cmnAticleForm1.do">Life Style 글 등록</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/community/dropOut.do">임시</a></li>
  			</ul>
  		</li> 	
  		<li class="ohnaju-li"><a href="#" class="ohnaju-sixth-btn"><i style="color:#7f9b75" class="fa-solid fa-building-user"></i>&emsp;고객 관리</a>

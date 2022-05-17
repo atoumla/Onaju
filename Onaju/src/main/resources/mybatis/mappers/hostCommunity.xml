@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.hostCommunity">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="hostCommunity" type="HostCommunityVO">
+		<result property="cmnNum" column="cmnNum" />
+		<result property="bigTitle" column="bigTitle" />
+		<result property="smallTitle" column="smallTitle" />
+		<result property="cmn_image" column="cmn_image" />
+		<result property="content" column="content" />
+		
+		<result property="h_id" column="h_id" />
+		<result property="h_imageName" column="h_imageName" />
+		
+		<result property="h_code" column="h_code" />
+		<result property="hostInfo_name" column="hostInfo_name" />
+		<result property="roadAddress" column="roadAddress" />
+		<result property="host_type" column="host_type" />
+		
+		<result property="room_code" column="room_code" />
+		<result property="room_type" column="room_type" />
+		<result property="room_number" column="room_number" />
+		<result property="room_fee" column="room_fee" />
+		<result property="able_checkIn" column="able_checkIn" />
+		<result property="able_checkOut" column="able_checkOut" />
+		<result property="title" column="title" />
+		<result property="min_number" column="min_number" />
+		<result property="max_number" column="max_number" />
+		
+		<result property="roomImage_NO" column="roomImage_NO" />
+		<result property="room_imageName" column="room_imageName" />
+		
+	</resultMap>
+	
+	
+	<resultMap id="imageResult" type="hostImageFileVO">
+		<result property="roomImage_NO" column="roomImage_NO" />
+		<result property="room_code" column="room_code" />
+		<result property="room_imageName" column="room_imageName" />
+		<result property="room_imageType" column="room_imageType" />
+		<result property="h_id" column="h_id" />
+		
+	</resultMap>
+
+
+
+<!-- 게시판 목록 불러오기 -->
+	<select id="hostAllCommunityList" resultMap="hostCommunity"  parameterType="String"  >
+	    <![CDATA[
+				select C.cmnNum, I.hostInfo_name, R.room_number, C.bigTitle, C.creDate
+				from h_community C inner join h_room R
+				on C.room_code = R.room_code
+                inner join h_host_info I
+				on R.h_code = I.h_code
+				where C.h_id =#{h_id}
+		]]>
+	</select>
+	<!-- 게시판  정보 불러오기 -->
+	<select id="selectCommunityList" resultType="hostCommunityVO"   parameterType="String"  >
+     <![CDATA[
+     		select distinct H.h_id, H.h_imageName, R.room_code, R.room_number, I.h_code, I.hostInfo_name, I.roadAddress, I.host_type
+			from h_room R
+    		inner join h_host H
+     		on R.h_id = H.h_id
+			inner join h_host_info I
+        	on R.h_code = I.h_code
+  			where R.h_id = #{h_id}
+     
+     ]]>
+	</select>
+<!-- 게시판 글 불러오기 -->
+	<select id="selectCommunityView" resultMap="hostCommunity"   parameterType="String"  >
+     <![CDATA[
+    select distinct H.h_id, H.h_imageName, R.room_code, R.room_number, I.h_code,  I.roadAddress, I.hostInfo_name, 
+	I.roadAddress, I.host_type, R.room_type, R.room_number, R.room_fee, R.able_checkIn, R.able_checkOut, R.title, R.min_number, R.max_number
+			from h_room R
+    		inner join h_host H
+     		on R.h_id = H.h_id
+			inner join h_host_info I
+        	on R.h_code = I.h_code
+  			where R.room_code = #{room_code}
+     ]]>
+	</select>
+<!-- 슬라이드 이미지불러오기 -->	
+	<select id="slideView" resultMap="imageResult"   parameterType="String"  >
+       <![CDATA[
+             select * from  h_roomImage 
+              where  room_code = #{room_code}
+               order by roomImage_NO asc            
+       ]]>
+   </select>
+
+	
+<!-- 게시판 글 등록하기 -->
+	<insert id="insertNewCommunity"  parameterType="hostCommunityVO"  >
+	<!--  <selectKey resultType="int" keyProperty="cmnNum" order="BEFORE">
+			SELECT MAX(cmnNum) +1 FROM h_community 
+	</selectKey>    -->
+	
+	    <![CDATA[ insert into h_community(
+	    							      room_code,
+	    								  h_id,
+	    								  bigTitle,
+	    								  smallTitle,
+	    								  cmn_image,
+	    								  content
+	    								  )
+	    								  
+	    							values(
+	    								  #{room_code},
+	    								  #{h_id},
+	    								  #{bigTitle},
+	    								  #{smallTitle},
+	    								  #{cmn_image},
+	    								  #{content}
+	    								  )	  
+				
+		]]>
+	</insert>
+
+
+
+
+
+	
+   
+</mapper>

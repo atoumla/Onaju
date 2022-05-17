@@ -11,6 +11,7 @@
     
     <typeAlias type="com.myspring.Onaju.host.goods.vo.HostGoodsVO" alias="hostGoodsVO" />  
     <typeAlias type="com.myspring.Onaju.host.goods.vo.HostImageFileVO" alias="hostImageFileVO" />  
+    <typeAlias type="com.myspring.Onaju.host.community.vo.HostCommunityVO" alias="hostCommunityVO" />
       <typeAlias type="com.myspring.Onaju.order.vo.OrderVO" alias="orderVO" />
        <typeAlias type="com.myspring.Onaju.cart.vo.CartVO" alias="cartVO" />
        <typeAlias type="com.myspring.Onaju.order.vo.OrderVO" alias="orderVO" />
