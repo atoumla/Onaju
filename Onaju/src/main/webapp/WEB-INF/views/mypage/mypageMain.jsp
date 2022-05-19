@@ -67,6 +67,18 @@ border: 1px solid #CCCCCC;
 	float:left;
 }
 
+.hb_rec_3_mypage:hover{
+	text-align: center;
+	display: inline-block;
+	width: 134px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1px solid #CCCCCC;
+	padding: 0px 0px 0px 0px;
+	margin: 7px 21px 7px 0px;
+	float:left;
+}
+
 .hb_rec_4 {
 	display: inline-block;
 	width: 240px;
@@ -231,12 +243,25 @@ text-align:left;
 }
 /* <a 태그 부모 태그 전체 확장> */
 #hb_a_main {
-    color: black;
+       color: black;
     text-decoration: none;
     display: block;
     height: 100%;
     margin: 0 auto;
-    border-radius: 20px;
+    border-radius: 9px;
+    background-color: white;
+    opacity: 100%;
+}
+
+#hb_a_main:hover {
+       color: white;
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    border-radius: 9px;
+    background-color: rgb(252,78,130);
+    opacity: 100%;
 }
 </style>
 
