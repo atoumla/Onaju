@@ -253,6 +253,19 @@ text-align:left;
 		}
 	</script>
 </c:if>
+<c:if test='${ not empty message }'>
+
+	<script>
+	window.onload=function()
+	{
+	  result1();
+	}
+
+	function result1(){
+		alert('${message}');
+	}
+	</script>
+</c:if>
 <script>
 
 
@@ -272,8 +285,8 @@ function readURL(input) {
 	}
 	
 	function submitFrofile(){
-		 var a = document.getElementById('u_imageName').value;
-		 alert(a);
+		
+		
 		document.addProfile.submit();
 	}
 </script>
@@ -325,15 +338,17 @@ function readURL(input) {
 		<form action="${contextPath}/member/uploadProfile.do" method="post"  name="addProfile"enctype="multipart/form-data">
 		<div style="width:25%; height:218px;border: 1px solid #CCCCCC; float:left;">
 		<a href="#"style="width:130px; margin-top:10px;height:130px; border: 2px solid #CCCCCC; border-radius:70%; display:block;">
-		<img id="preview" style="width:100%; height:100%; overflow:hidden; z-index:9999;border-radius:70%; border: 0px; ">
+		<img id="preview" style="width:100%; height:100%; overflow:hidden; z-index:9999;border-radius:70%; border: 0px;" onclick="onclick=document.all.u_imageName.click()" 
+		src="${contextPath}/profileShow.do?u_id=${memberInfo.u_id}&fileName=${memberInfo.u_imageName}">
+		
 		</a><input type="hidden" name="u_id" value="${memberInfo.u_id }">
-		<div style="width:80%; height:30px;  margin-top:25px;">
+		<div style="width:80%; height:30px;  margin-top:8px;">
 		<input type="hidden" name="imageName" id="imageName" >
-		  <input  type='file' name='u_imageName' id='u_imageName'  />
-		<!-- <div style="  border: 1px solid #CCCCCC; border-radius: 10px; padding: 3px 10px;"  onclick="onclick=document.all.u_imageName.click()"  >프로필 선택</div> -->
+		  <input  type='file' name='u_imageName' id='u_imageName' style="display:none;" onChange="readURL(this)"/>
+		<div style="  border: 1px solid #CCCCCC;cursor:pointer;width: 126px;border-radius: 10px; padding: 3px 10px;"  onclick="onclick=document.all.u_imageName.click()"  >${message} 프로필 선택</div>
     <div style="    border: 1px solid #CCCCCC;
     border-radius: 10px;
-    padding: 3px 10px;"  onClick="submitFrofile()" >등록</div>
+    padding: 3px 10px; margin-top:5px;width: 126px;cursor:pointer;"  onClick="submitFrofile()" >등록</div>
   
 		</div>
 		</div>

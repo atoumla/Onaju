@@ -21,7 +21,7 @@ import com.myspring.Onaju.member.vo.MemberVO;
 
 public abstract class BaseController  {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\onaju\\host_room_image";
-	
+	private static final String CURR_IMAGE_REPO_PATH_MEMBER = "C:\\onaju\\member_profile";
 	
 	protected List<HostImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
 		List<HostImageFileVO> fileList= new ArrayList<HostImageFileVO>();
@@ -61,14 +61,14 @@ public abstract class BaseController  {
 			imageFileVO.setU_imageName(originalFileName);
 			fileList.add(imageFileVO);
 			
-			File file = new File(CURR_IMAGE_REPO_PATH +"\\"+ fileName);
+			File file = new File(CURR_IMAGE_REPO_PATH_MEMBER +"\\"+ fileName);
 			if(mFile.getSize()!=0){ //File Null Check
 				if(! file.exists()){ //��λ� ������ �������� ���� ���
 					if(file.getParentFile().mkdirs()){ //��ο� �ش��ϴ� ���丮���� ����
 							file.createNewFile(); //���� ���� ����
 					}
 				}
-				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH +"\\"+"temp"+ "\\"+originalFileName)); //�ӽ÷� ����� multipartFile�� ���� ���Ϸ� ����
+				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH_MEMBER +"\\"+"temp"+ "\\"+originalFileName)); //�ӽ÷� ����� multipartFile�� ���� ���Ϸ� ����
 			}
 		}
 		return fileList;
@@ -77,8 +77,8 @@ public abstract class BaseController  {
 	
 	
 	
-	private void deleteFile(String fileName) {
-		File file =new File(CURR_IMAGE_REPO_PATH+"\\"+fileName);
+	protected void deleteFileproFile(String fileName, String u_id) {
+		File file =new File(CURR_IMAGE_REPO_PATH_MEMBER+"\\"+u_id + "\\" + fileName);
 		try{
 			file.delete();
 		}catch(Exception e){

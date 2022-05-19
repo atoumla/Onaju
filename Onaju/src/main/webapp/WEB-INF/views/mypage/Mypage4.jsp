@@ -82,10 +82,10 @@ request.setCharacterEncoding("UTF-8");
     top: 120px;
 }
 
-.hb_section_mypagemain {
+.hb_section_mypagemain_0 {
 	display: inline-block;
 	width: 920px;
-	height:600px;
+	height:100%;
 }
 
 
@@ -122,12 +122,18 @@ font-weight:bold;
 color:white;
 }
 
+.hb_section_mypagemain {
+padding: 30px 0px;
+	display: inline-block;
+	width: 84%;
+	height:100%;
+}
 .hb_section_mypagemain_2 {
 	border: 0;
 
 	display: inline-block;
 	width: 920px;
-	height:520px;
+	height:100%;
 }
 .tg  {width: 100%; border-collapse:collapse;border-top: 1px solid #CCCCCC;}
 .tg td{font-family:Arial, sans-serif;font-size:14px; border-top: 1px solid #CCCCCC;
@@ -177,18 +183,19 @@ color:white;
 	height: 50px;
 }
 
+
 .hb_section_title {
-	padding: 20px 4px 30px 180px;
+	padding: 20px 4px 15px 0px;
 	display: inline-block;
-	width: 1100px;
-	height: 100px;
+	width: 100%;
+	height: 100%;
 }
 /* <인라인블럭 왼쪽 고정> */
 .margin_left_0 {
 	float: left;
 	margin-left: 0px;
+	border:0;
 }
-
 
 /* <인라인블럭 왼쪽 고정> */
 .margin_right_0 {
@@ -217,13 +224,11 @@ color:white;
 	text-align: left;
 	font-size: 25px;
 }
-
-#h1_left_title{
-
-	color: rgb(252, 78, 130);
-	font-weight: 600;
-	text-align: left;
-	font-size: 35px;
+#h1_left_title {
+    color: #5C5C5C;
+    font-weight: 600;
+    text-align: left;
+    font-size: 30px;
 }
 /* <a 태그 부모 태그 전체 확장> */
 #hb_a_main {
@@ -251,9 +256,7 @@ color:black;
 	
 	
 	
-		<section class="hb_section_title">
-			<h1 id="h1_left_title">적립금 내역</h1>
-		</section>
+		
 	
 	<div style="width:170px; height:1000px; float:left;">
 		<!-- <상위 네비게이션>-->
@@ -263,7 +266,7 @@ color:black;
 				<a id="hb_a_main" href="${contextPath}/mypage/mypageMain.do"><br>이용내역조회</a>
 			</div>
 			<div class="hb_rec_3_mypage">
-				<a id="hb_a_main" href="${contextPath}/mypage/Mypage2.do"><br>즐겨찾기</a>
+				<a id="hb_a_main" href="${contextPath}/mypage/myCart.do"><br>장바구니</a>
 			</div>
 			<div class="hb_rec_3_mypage">
 				<a id="hb_a_main" href="${contextPath}/mypage/Mypage3.do"><br>회원정보수정</a>
@@ -274,7 +277,7 @@ color:black;
 			<div class="hb_rec_3_mypage">
 				<a id="hb_a_main" href="${contextPath}/mypage/Mypage5.do"><br>내 리뷰 내역</a>
 			</div>
-				
+					
 			<div class="hb_rec_3_mypage">
 				<a id="hb_a_main" href="${contextPath}/mypage/delMember.do"><br>회원 탈퇴</a>
 			</div>
@@ -282,7 +285,45 @@ color:black;
 		</div>
 		
 		</div>
+		
+		
 		<section class="hb_section_mypagemain">
+		<div style="    width: 100%;
+    height: 220px;
+    border: 1px solid #CCCCCC;
+    border-radius: 12px;
+    float: right;
+">
+		
+		<form action="${contextPath}/member/uploadProfile.do" method="post"  name="addProfile"enctype="multipart/form-data">
+		<div style="width:25%; height:218px;border: 1px solid #CCCCCC; float:left;">
+		<a href="#"style="width:130px; margin-top:10px;height:130px; border: 2px solid #CCCCCC; border-radius:70%; display:block;">
+		<img id="preview" style="width:100%; height:100%; overflow:hidden; z-index:9999;border-radius:70%; border: 0px;" onclick="onclick=document.all.u_imageName.click()" 
+		src="${contextPath}/profileShow.do?u_id=${memberInfo.u_id}&fileName=${memberInfo.u_imageName}">
+		
+		</a><input type="hidden" name="u_id" value="${memberInfo.u_id }">
+		<div style="width:80%; height:30px;  margin-top:8px;">
+		<input type="hidden" name="imageName" id="imageName" >
+		  <input  type='file' name='u_imageName' id='u_imageName' style="display:none;" onChange="readURL(this)"/>
+		<div style="  border: 1px solid #CCCCCC;cursor:pointer;width: 126px;border-radius: 10px; padding: 3px 10px;"  onclick="onclick=document.all.u_imageName.click()"  >${message} 프로필 선택</div>
+    <div style="    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    padding: 3px 10px; margin-top:5px;width: 126px;cursor:pointer;"  onClick="submitFrofile()" >등록</div>
+  
+		</div>
+		</div>
+		</form>
+		
+	
+		
+				</div>
+		
+		<div class="hb_section_title">
+			<h1 id="h1_left_title">적립금 내역</h1>
+		</div>
+		
+		
+		<section class="hb_section_mypagemain_0">
 		
 		
 		
@@ -364,6 +405,7 @@ color:black;
 
 
 
+	</section>
 	</section>
 </body>
 

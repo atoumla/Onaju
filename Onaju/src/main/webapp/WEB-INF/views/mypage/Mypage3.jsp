@@ -348,8 +348,6 @@ $("#emailChk").click(function(){
 	height: 100%
 }
 
-
-	
 .hb_section_mypagenav {
 	display: inline-block;
     width: 160px;
@@ -357,6 +355,7 @@ $("#emailChk").click(function(){
     position: sticky;
     top: 120px;
 }
+
 
 
 .hb_section_mypagemain {
@@ -417,15 +416,16 @@ $("#emailChk").click(function(){
 }
 
 .hb_section_title {
-	padding: 20px 4px 30px 180px;
+	padding: 20px 4px 15px 0px;
 	display: inline-block;
-	width: 1100px;
-	height: 100px;
+	width: 100%;
+	height: 100%;
 }
 /* <인라인블럭 왼쪽 고정> */
 .margin_left_0 {
 	float: left;
 	margin-left: 0px;
+	border:0;
 }
 /* <인라인블럭 왼쪽 고정> */
 .margin_right_0 {
@@ -455,11 +455,12 @@ $("#emailChk").click(function(){
 	font-size: 25px;
 }
 
-#h1_left_title {
-	color: rgb(252, 78, 130);
+#h1_left_title{
+
+	color:  #5C5C5C;
 	font-weight: 600;
 	text-align: left;
-	font-size: 35px;
+	font-size: 30px;
 }
 
 #hb_a_main {
@@ -1011,12 +1012,6 @@ $("#emailChk").click(function(){
 
 
 
-		<section class="hb_section_title">
-			<h1 id="h1_left_title">회원정보 수정</h1>
-		</section>
-
-
-		
 	
 	<div style="width:170px; height:1000px; float:left;">
 		<!-- <상위 네비게이션>-->
@@ -1037,7 +1032,7 @@ $("#emailChk").click(function(){
 			<div class="hb_rec_3_mypage">
 				<a id="hb_a_main" href="${contextPath}/mypage/Mypage5.do"><br>내 리뷰 내역</a>
 			</div>
-			
+					
 			<div class="hb_rec_3_mypage">
 				<a id="hb_a_main" href="${contextPath}/mypage/delMember.do"><br>회원 탈퇴</a>
 			</div>
@@ -1045,10 +1040,16 @@ $("#emailChk").click(function(){
 		</div>
 		
 		</div>
+		
 		<section class="hb_section_mypagemain">
 
 
 
+
+
+		<section class="hb_section_title">
+			<h1 id="h1_left_title">회원정보 수정</h1>
+		</section>
 
 
 

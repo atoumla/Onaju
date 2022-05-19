@@ -84,6 +84,7 @@ public class HostGoodsServiceImpl implements HostGoodsService{
 	
 	@Override
 	public void addNewGoodsImage(List imageFileList) throws Exception{
+		
 		goodsDAO.insertGoodsImageFile(imageFileList);
 	}
 	
