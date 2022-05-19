@@ -359,9 +359,10 @@ $("#emailChk").click(function(){
 
 
 .hb_section_mypagemain {
+padding: 30px 0px;
 	display: inline-block;
-	width: 920px;
-	height: 100%;
+	width: 84%;
+	height:100%;
 }
 
 .hb_section_mypagemain_1 {
@@ -565,6 +566,7 @@ $("#emailChk").click(function(){
 	margin: 6px 0 6px 6px;
 	border: 1px solid;
 	float: left;
+	border-radius: 5px;
 }
 
 .btn_wrap2 {
@@ -997,21 +999,51 @@ $("#emailChk").click(function(){
 	display: none;
 }
 </style>
+
+<c:if test='${ not empty message }'>
+
+	<script>
+	window.onload=function()
+	{
+	  result1();
+	}
+
+	function result1(){
+		alert('${message}');
+	}
+	</script>
+</c:if>
+<script>
+
+
+
+function readURL(input) {
+	  
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('preview').src = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('preview').src = "";
+	  }
+	
+	}
+	
+	function submitFrofile(){
+		
+		
+		document.addProfile.submit();
+	}
+</script>
 </head>
 <body>
 
 	<section class="hb_section_total">
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
 	
 	<div style="width:170px; height:1000px; float:left;">
 		<!-- <상위 네비게이션>-->
@@ -1040,16 +1072,49 @@ $("#emailChk").click(function(){
 		</div>
 		
 		</div>
-		
+
+
 		<section class="hb_section_mypagemain">
+			<div
+				style="width: 100%; height: 140px; border: 1px solid #CCCCCC; border-radius: 12px; float: right;">
+
+				<form action="${contextPath}/member/uploadProfile.do" method="post"
+					name="addProfile" enctype="multipart/form-data">
+					<div
+						style="width: 20%; height: 138px; border-right: 1px solid #CCCCCC; float: left;">
+						<a href="#"
+							style="width: 80px; margin-top: 10px; height: 80px; border: 2px solid #CCCCCC; border-radius: 70%; display: block;">
+							<img id="preview"
+							style="width: 100%; height: 100%; overflow: hidden; z-index: 9999; border-radius: 70%; border: 0px;"
+							onclick="onclick=document.all.u_imageName.click()"
+							src="${contextPath}/profileShow.do?u_id=${memberInfo.u_id}&fileName=${memberInfo.u_imageName}">
+
+						</a><input type="hidden" name="u_id" value="${memberInfo.u_id }">
+						<div style="width: 80%; height: 30px; margin-top: 8px;">
+							<input type="hidden" name="imageName" id="imageName"> <input
+								type='file' name='u_imageName' id='u_imageName'
+								style="display: none;" onChange="readURL(this)" />
+							<div
+								style="border: 1px solid #CCCCCC; cursor: pointer; width: 60%; font-size: 12px; border-radius: 10px; padding: 3px 10px; display: inline-block;"
+								onclick="onclick=document.all.u_imageName.click()"><strong>프로필 선택</strong>
+								</div>
+
+							<div
+								style="border: 1px solid #CCCCCC; border-radius: 10px; padding: 3px 10px; margin-top: 3px; width: 35%; display: inline-block; cursor: pointer; font-size: 12px;"
+								onClick="submitFrofile()"><strong>등록</strong></div>
+
+						</div>
+					</div>
+				</form>
 
 
 
+			</div>
 
 
-		<section class="hb_section_title">
-			<h1 id="h1_left_title">회원정보 수정</h1>
-		</section>
+			<section class="hb_section_title">
+				<h1 id="h1_left_title">회원정보 수정</h1>
+			</section>
 
 
 
@@ -1142,7 +1207,7 @@ $("#emailChk").click(function(){
 												id="u_phone" value="${memberInfo.u_phone }"> <input
 												type="hidden" name="_moblie_check" id="_moblie_check" /> <!-- <a href="javascript:;" class="btn_confirm">인증번호 발송</a></td> -->
 										</tr>
-										
+
 										<tr class="email">
 											<th><span>이메일</span></th>
 											<td><input type="text" class="email_input"
@@ -1150,8 +1215,9 @@ $("#emailChk").click(function(){
 												value="${memberInfo.u_email1 }"><span class="mar10">@</span>
 												<input type="text" value="${memberInfo.u_email2 }"
 												class="email_input" name="u_email2" id="email_add">
-												<select name="email_sel" style="margin-left:0px;width:115px;float:right;"class="email_sel" id="email_sel"
-												onchange="change_email();">
+												<select name="email_sel"
+												style="margin-left: 0px; width: 115px; float: right;"
+												class="email_sel" id="email_sel" onchange="change_email();">
 													<option value="">직접입력</option>
 													<option value="gmail.com">gmail</option>
 													<option value="naver.com">naver</option>
@@ -1190,16 +1256,14 @@ $("#emailChk").click(function(){
 									</tbody>
 								</table>
 
-								<div class="exform_txt">
-									
-								</div>
+								<div class="exform_txt"></div>
 							</div>
 
 
 
 
 
-							
+
 
 						</div>
 						<!-- form_txtInput E -->
@@ -1217,14 +1281,14 @@ $("#emailChk").click(function(){
 					<button type="button" class="btn_wrap1"
 						onClick="fn_modify_member_info('u_pw')">비밀번호 수정하기</button>
 					<div class="btn_wrap2" style="height: 30px;"></div>
-					
+
 
 					<button type="button" class="btn_wrap1"
 						onClick="fn_modify_member_info('u_phone')">전화번호 수정하기</button>
 					<button type="button" class="btn_wrap1"
 						onClick="fn_modify_member_info('u_email')">이메일 수정하기</button>
-											<div class="btn_wrap2" style="height: 118px;"></div>
-						
+					<div class="btn_wrap2" style="height: 118px;"></div>
+
 					<button type="button" class="btn_wrap1"
 						onClick="fn_modify_member_info('address')">주소 수정하기</button>
 

@@ -173,7 +173,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	    session.removeAttribute("memberInfo");
 	    session.setAttribute("memberInfo", mem);
 		mav.addObject("message", message);
-		mav.setViewName("redirect:/mypage/mypageMain.do");
+		mav.setViewName("forward:/mypage/Mypage3.do");
 		return mav;
 	}
 			
