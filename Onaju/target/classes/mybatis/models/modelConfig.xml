@@ -4,18 +4,20 @@
 
 <configuration>
 	<typeAliases>
-	 <typeAlias type="com.myspring.Onaju.member.vo.MemberVO" alias="memberVO" />
-    <typeAlias type="com.myspring.Onaju.mypage.vo.MyPageVO" alias="mypageVO" />
-    <typeAlias type="com.myspring.Onaju.host.vo.HostVO" alias="hostVO" />
+		<typeAlias type="com.myspring.Onaju.member.vo.MemberVO" alias="memberVO" />
+    	<typeAlias type="com.myspring.Onaju.mypage.vo.MyPageVO" alias="mypageVO" />
+    	<typeAlias type="com.myspring.Onaju.host.vo.HostVO" alias="hostVO" />
         <typeAlias type="com.myspring.Onaju.host.goods.vo.HostInfoVO" alias="hostInfoVO" />
     
-    <typeAlias type="com.myspring.Onaju.host.goods.vo.HostGoodsVO" alias="hostGoodsVO" />  
-    <typeAlias type="com.myspring.Onaju.host.goods.vo.HostImageFileVO" alias="hostImageFileVO" />  
-    <typeAlias type="com.myspring.Onaju.host.community.vo.HostCommunityVO" alias="hostCommunityVO" />
-      <typeAlias type="com.myspring.Onaju.order.vo.OrderVO" alias="orderVO" />
-       <typeAlias type="com.myspring.Onaju.cart.vo.CartVO" alias="cartVO" />
-       <typeAlias type="com.myspring.Onaju.order.vo.OrderVO" alias="orderVO" />
-   <typeAlias type="com.myspring.Onaju.s_member.S_memberVO" alias="s_memberVO" />
+    	<typeAlias type="com.myspring.Onaju.host.goods.vo.HostGoodsVO" alias="hostGoodsVO" />  
+    	<typeAlias type="com.myspring.Onaju.host.goods.vo.HostImageFileVO" alias="hostImageFileVO" />  
+    	<typeAlias type="com.myspring.Onaju.host.community.vo.HostCommunityVO" alias="hostCommunityVO" />
+      	<typeAlias type="com.myspring.Onaju.order.vo.OrderVO" alias="orderVO" />
+       	<typeAlias type="com.myspring.Onaju.cart.vo.CartVO" alias="cartVO" />
+       	<typeAlias type="com.myspring.Onaju.order.vo.OrderVO" alias="orderVO" />
+   		<typeAlias type="com.myspring.Onaju.s_member.S_memberVO" alias="s_memberVO" />
+	
+		<typeAlias type="com.myspring.Onaju.admin.admin.vo.AdminVO" alias="adminVO" />
 	</typeAliases>
 </configuration>
 

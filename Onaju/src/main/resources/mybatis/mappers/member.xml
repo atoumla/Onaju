@@ -147,5 +147,13 @@
 		   insert into u_member u_imageName  values #{u_imageName} where u_id=#{u_id} 
 		]]>
 	</insert> 
+	
+	<select id="selectRetireMembers" resultMap="memberResult">
+		select * from u_member where del_yn = 'Y'
+	</select>
+	
+	<delete id="deleteRetireMember" parameterType="memberVO">
+		delete from u_member where u_id = #{u_id}
+	</delete>
 
 </mapper>
