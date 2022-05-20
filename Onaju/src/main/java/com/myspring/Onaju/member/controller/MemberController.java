@@ -25,7 +25,7 @@ public interface MemberController {
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity  addMember(@ModelAttribute("member") MemberVO member,
             HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity   overlapped(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public String overlapped(@RequestParam("id") String id) throws Exception;
 	public ModelAndView idFind(@RequestParam Map<String, String> loginMap,
             HttpServletRequest request, HttpServletResponse response) throws Exception; 
 	public ModelAndView pwdFind(@RequestParam Map<String, String> loginMap,

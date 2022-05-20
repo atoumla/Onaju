@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin.member">
+
+	<resultMap id="memberResult" type="memberVO">
+      	<result property="u_id" column="u_id" />
+      	<result property="u_pw" column="u_pw" />
+      	<result property="u_name" column="u_name" />
+      	<result property="u_birth_y" column="u_birth_y" />
+      	<result property="u_birth_m" column="u_birth_m" />
+      	<result property="u_birth_d" column="u_birth_d" />
+      	<result property="u_gender" column="u_gender" />
+      	<result property="u_phone" column="u_phone" />
+      	<result property="u_email1" column="u_email1" />
+      	<result property="u_email2" column="u_email2" />
+      	<result property="zipcode" column="zipcode" />
+      	<result property="roadAddress" column="roadAddress" />
+      	<result property="numberAddress" column="numberAddress" />
+      	<result property="restAddress" column="restAddress" />
+      	<result property="u_point" column="u_point" />
+      	<result property="u_grade" column="u_grade" />
+      	<result property="proposer" column="proposer" />
+      	<result property="u_imageName" column="u_imageName" />
+      	<result property="u_imageType" column="u_imageType" />
+      	<result property="u_agree_1" column="u_agree_1" />
+      	<result property="u_agree_2" column="u_agree_2" />
+      	<result property="u_agree_3" column="u_agree_3" />
+      	<result property="u_service_01" column="u_service_01" />
+      	<result property="u_service_02" column="u_service_02" />
+      	<result property="joinDate" column="joinDate" />
+      	<result property="del_yn" column="del_yn" />
+	</resultMap>
+	
+<!-- 		<resultMap id="schMemResult" type="schMemVO">
+      	<result property="u_id" column="u_id" />
+      	<result property="u_pw" column="u_pw" />
+      	<result property="u_name" column="u_name" />
+      	<result property="u_birth_y" column="u_birth_y" />
+      	<result property="u_birth_m" column="u_birth_m" />
+      	<result property="u_birth_d" column="u_birth_d" />
+      	<result property="u_gender" column="u_gender" />
+      	<result property="u_phone" column="u_phone" />
+      	<result property="u_email1" column="u_email1" />
+      	<result property="u_email2" column="u_email2" />
+      	<result property="zipcode" column="zipcode" />
+      	<result property="roadAddress" column="roadAddress" />
+      	<result property="numberAddress" column="numberAddress" />
+      	<result property="restAddress" column="restAddress" />
+      	<result property="u_point" column="u_point" />
+      	<result property="u_grade" column="u_grade" />
+      	<result property="proposer" column="proposer" />
+      	<result property="u_imageName" column="u_imageName" />
+      	<result property="u_imageType" column="u_imageType" />
+      	<result property="u_agree_1" column="u_agree_1" />
+      	<result property="u_agree_2" column="u_agree_2" />
+      	<result property="u_agree_3" column="u_agree_3" />
+      	<result property="u_service_01" column="u_service_01" />
+      	<result property="u_service_02" column="u_service_02" />
+      	<result property="joinDate" column="joinDate" />
+      	<result property="del_yn" column="del_yn" />
+	</resultMap> -->
+	
+	
+	<select id="selectAllMemberList" resultMap="memberResult"   parameterType="MemberVO"  >
+		 <![CDATA[
+		 select * from 
+        (select @rownum := @rownum + 1 as rn, u_id, u_name, u_phone, u_email1, u_email2, roadAddress, joinDate, u_grade, del_yn
+        from u_member, (select @rownum := 0)  as rowcolumn order by joinDate desc) z 
+		where rn >= #{startNO} and rn <= #{endNO}
+		]]>					        
+	</select>
+	
+	<select id="selectAllMemberTotal" resultType="java.lang.Integer">
+   		<![CDATA[
+        SELECT count(*) total FROM u_member
+    	]]>
+	</select>
+	
+	<select id="selectMemberDetail" resultMap="memberResult"   parameterType="MemberVO"  >
+		 select u_id, u_pw, u_name, u_birth_y, u_birth_m, u_birth_d, u_gender, u_phone, u_email1, u_email2, zipcode, roadAddress, numberAddress, restAddress, u_point, u_grade, proposer, u_imageName, u_imageType, u_agree_1, u_agree_2, u_agree_3, u_service_01, u_service_02, joinDate, del_yn from u_member where u_id = #{u_id}					        
+	</select>
+	
+	<select id="selectMemberUpdate"  parameterType="MemberVO">
+		<![CDATA[
+		update u_member set u_name=#{u_name}, 
+		u_birth_y=#{u_birth_y}, 
+		u_birth_m=#{u_birth_m}, 
+		u_birth_d=#{u_birth_d}, 
+		u_gender=#{u_gender}, 
+		u_phone=#{u_phone}, 
+		u_email1=#{u_email1}, 
+		u_email2=#{u_email2}, 
+		zipcode=#{zipcode}, 
+		roadAddress=#{roadAddress}, 
+		numberAddress=#{numberAddress}, 
+		restAddress=#{restAddress}, 
+		u_point=#{u_point}, 
+		u_grade=#{u_grade}, 
+		proposer=#{proposer}, 
+		u_service_01=#{u_service_01}, 
+		u_service_02=#{u_service_02}, 
+		joinDate=#{joinDate},
+		del_yn=#{del_yn}
+		where u_id=#{u_id}
+		]]>	
+	</select>
+	
+	<!-- <select id="selectRetireMembers" resultMap="schMemResult">
+		select * from u_member where del_yn = 'Y'
+	</select>
+	
+	<delete id="deleteRetireMember" parameterType="schMemVO">
+		delete from u_member where u_id = #{u_id}
+	</delete> -->
+	
+</mapper>

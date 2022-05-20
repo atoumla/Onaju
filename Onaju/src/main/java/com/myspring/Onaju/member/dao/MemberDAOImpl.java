@@ -22,7 +22,7 @@ public class MemberDAOImpl implements MemberDAO{
 	
 		MemberVO member=(MemberVO)sqlSession.selectOne("mapper.member.login",loginMap);
 		   System.out.println(loginMap);
-		return member;
+		   return member;
 
 	}
 
