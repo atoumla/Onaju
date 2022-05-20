@@ -35,7 +35,7 @@ request.setCharacterEncoding("UTF-8");
 .nav-link {
 	position: relative;
 	padding: 10px 0px;
-	color:black;
+	
 	width: auto;
 	margin-top: 20px;
 	height: 40px;
@@ -44,16 +44,55 @@ request.setCharacterEncoding("UTF-8");
 	border-radius: 30px;
 }
 
-.nav-link:hover, .nav-link:focus {
-	z-index: 5000;
+.nav-link #main_font_i, .nav-link #main_user_icon{
+	
+	color:black;
+	opacity:70%;
+	
+}
 
+.nav-link:hover , .nav-link:focus {
+	z-index: 5000;
+color:black;
 box-shadow: 0 2px 4px rgba(0,0,0,0.18);
 	width: auto;
 	margin-top: 20px;
 	height: 40px;
 	border-radius: 30px;
+	opacity:100%;
 }
 
+.nav-link:hover #main_font_i,.nav-link:hover #main_user_icon .nav-link:focus #main_font_i, .nav-link:hover #main_user_icon{	
+color:black;
+	opacity:100%;
+}
+
+
+#samsun{
+    width: 70%;
+    height: 1px;
+    border-radius: 20px;
+    border: 1px solid black;
+    display: inline-block;
+    float: left;
+    margin: 1px 0px;
+    opacity:50%;
+        transition: 0.5s;
+    
+}
+
+.nav-link:hover #samsun, .nav-link:focus #samsun{
+    width: 70%;
+    height: 1px;
+    border-radius: 20px;
+    border: 1px solid black;
+    display: inline-block;
+    float: left;
+    margin: 1px 0px;
+    opacity:80%;
+        transition: 0.5s;
+    
+}
 /* .nav-link:visited {
 	color: rgb(252, 78, 130);
 }
@@ -126,20 +165,6 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.18);
     padding: 10px 0px;
     text-align: left;
 }
-#samsun{
-    width: 70%;
-    height: 1px;
-    border-radius: 20px;
-    border: 1px solid black;
-    display: inline-block;
-    float: left;
-    margin: 1px 0px;
-    opacity:70%;
-        transition: 0.5s;
-    
-}
-
-
 
 </style><script>
 	function fn_joinform_check() {
@@ -224,7 +249,7 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.18);
 									<c:otherwise>
 									<i
 										style="border-radius:70%;padding:5px 0px 5px 5px; width:30px;height:30px;float: left;margin: 4px 5px 4px 6px;">
-										<i class="fas fa-user fa-fw" ></i></i>
+										<i class="fas fa-user fa-fw" id="main_user_icon"></i></i>
 									</c:otherwise>
 								</c:choose> 
 								<c:choose>
@@ -233,7 +258,7 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.18);
 									</c:when>
 									<c:when test="${not empty isLogOn and not empty userInfo }">
 										<i id="main_font_i" class=" fa-fw">${userInfo.s_name}</i>
-									</c:when>
+									</c:when> 
 									<c:when
 										test="${not empty isLogOn and not empty nonmemberInfo }">
 										<i id="main_font_i" class=" fa-fw">${nonmemberInfo.u_name}</i>
