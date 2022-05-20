@@ -367,7 +367,7 @@ ul {
 					<div class="container2">
 						<div class="bigInfo">
 							<input type="text"  name="host_type" id="host_type" value="${goods.host_type}" >
-							<input type="text" id="bigTitle" name="bigTitle" placeholder="객실 제목을 작성해 주세요."/>
+							<input type="text" id="bigTitle" name="bigTitle" placeholder="커뮤니티 제목을 작성해 주세요."/>
 							<div class="h_profile">
 								<img id="profile" src="https://g-grafolio.pstatic.net/20190525_229/15587582702938v22E_JPEG/20190330-IMG_5851.jpg?type=w896_2" alt="프로필이미지">
 								<p id="hostid">${goods.h_id}</p>

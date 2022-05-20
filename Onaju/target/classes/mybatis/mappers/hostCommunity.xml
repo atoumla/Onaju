@@ -48,7 +48,7 @@
 
 
 <!-- 게시판 목록 불러오기 -->
-	<select id="hostAllCommunityList" resultMap="hostCommunity"  parameterType="String"  >
+	<select id="hostAllCommunityList" resultType="hostCommunityVO"  parameterType="String"  >
 	    <![CDATA[
 				select C.cmnNum, I.hostInfo_name, R.room_number, C.bigTitle, C.creDate
 				from h_community C inner join h_room R
@@ -121,9 +121,29 @@
 		]]>
 	</insert>
 
+<!-- 게시판 수정글 불러오기 -->
+	<select id="modCommunity" resultType="hostCommunityVO"   parameterType="int"  >
+     <![CDATA[
+			    select C.cmnNum,C.bigTitle,C.smallTitle,C.cmn_image,C.content,C.h_id,R.room_code,R.room_type,R.room_number,R.room_fee,
+				R.able_checkIn,R.able_checkOut,R.min_number,R.max_number,I.h_code,I.hostInfo_name,I.roadAddress,I.host_type,
+				H.h_imageName
+				from h_community C 
+			    left outer join h_room R 
+			    on C.room_code = R.room_code
+			    left outer join h_host_info I
+			    on R.h_code = I.h_code
+			    left outer join h_host H
+			    on I.h_id = H.h_id
+			    where C.cmnNum=#{cmnNum} 
+     ]]>
+	</select>
 
-
-
+<!-- 게시판 삭제 -->
+	<delete id="deleteHostCommunity" parameterType="int">
+	    <![CDATA[
+	      delete from h_community where cmnNum=#{cmnNum}
+    	]]>
+	</delete>
 
 	
    

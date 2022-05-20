@@ -16,32 +16,22 @@ public class HostGoodsVO {
 	private String restAddress;
 	private String host_type;
 	private String room_count;
-	private String h_name;
-	public String getH_name() {
-		return h_name;
-	}
-
-
-	public void setH_name(String h_name) {
-		this.h_name = h_name;
-	}
-
-
+	
 	private int room_code;
 	private int h_code;
 	private String h_id;
 	private String room_type;
 	private String room_number;
-	private int room_fee;
+	private String room_fee;
 	private String able_checkIn;
 	private String able_checkOut;
 	private String room_status;
 	private String title;
-	private int min_number;
-	private int max_number;
+	private String min_number;
+	private String max_number;
 	private String bed_type;
-	private int bed_count;
-	private int bath_count;
+	private String bed_count;
+	private String bath_count;
 	private String party_check;
 	private String kitchen;
 	private String wifi;
@@ -61,7 +51,9 @@ public class HostGoodsVO {
 	private String smoking;
 	private String content;
 	private Date creDate;
+	private int roomImage_NO;
 	private String room_imageName;
+	private String room_imageType;
 	
 	
 	public HostGoodsVO() {
@@ -209,12 +201,12 @@ public class HostGoodsVO {
 	}
 
 
-	public int getRoom_fee() {
+	public String getRoom_fee() {
 		return room_fee;
 	}
 
 
-	public void setRoom_fee(int room_fee) {
+	public void setRoom_fee(String room_fee) {
 		this.room_fee = room_fee;
 	}
 
@@ -259,22 +251,22 @@ public class HostGoodsVO {
 	}
 
 
-	public int getMin_number() {
+	public String getMin_number() {
 		return min_number;
 	}
 
 
-	public void setMin_number(int min_number) {
+	public void setMin_number(String min_number) {
 		this.min_number = min_number;
 	}
 
 
-	public int getMax_number() {
+	public String getMax_number() {
 		return max_number;
 	}
 
 
-	public void setMax_number(int max_number) {
+	public void setMax_number(String max_number) {
 		this.max_number = max_number;
 	}
 
@@ -289,22 +281,22 @@ public class HostGoodsVO {
 	}
 
 
-	public int getBed_count() {
+	public String getBed_count() {
 		return bed_count;
 	}
 
 
-	public void setBed_count(int bed_count) {
+	public void setBed_count(String bed_count) {
 		this.bed_count = bed_count;
 	}
 
 
-	public int getBath_count() {
+	public String getBath_count() {
 		return bath_count;
 	}
 
 
-	public void setBath_count(int bath_count) {
+	public void setBath_count(String bath_count) {
 		this.bath_count = bath_count;
 	}
 
@@ -499,6 +491,16 @@ public class HostGoodsVO {
 	}
 
 
+	public int getRoomImage_NO() {
+		return roomImage_NO;
+	}
+
+
+	public void setRoomImage_NO(int roomImage_NO) {
+		this.roomImage_NO = roomImage_NO;
+	}
+
+
 	public String getRoom_imageName() {
 		return room_imageName;
 	}
@@ -509,8 +511,15 @@ public class HostGoodsVO {
 	}
 
 
-	
+	public String getRoom_imageType() {
+		return room_imageType;
+	}
 
-	
+
+	public void setRoom_imageType(String room_imageType) {
+		this.room_imageType = room_imageType;
+	}
+
+
 
 }

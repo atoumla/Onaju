@@ -13,4 +13,7 @@ public interface HostCommunityDAO {
 	public List<HostCommunityVO> selectCommunityList(String h_id) throws DataAccessException;
 	public void insertNewCommunity(HostCommunityVO hostCommunityVO) throws DataAccessException;
 	public List<HostCommunityVO> hostAllCommunityList(String h_id) throws DataAccessException;
+	public HostCommunityVO modCommunity(int cmnNum) throws DataAccessException;
+	public void deleteHostCommunity(int cmnNum) throws DataAccessException;
+	
 }

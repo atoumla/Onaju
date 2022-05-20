@@ -18,4 +18,10 @@ public interface HostCommunityController {
 	public ResponseEntity addNewCommunity(HostCommunityVO hostCommunityVO, MultipartHttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 	public ModelAndView hostAllCommunityList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView modCmnAticleForm(int cmnNum, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView deleteHostCommunity(@RequestParam("cmnNum") int cmnNum, HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public ModelAndView modCmnConfirm(int cmnNum, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
+	
 }

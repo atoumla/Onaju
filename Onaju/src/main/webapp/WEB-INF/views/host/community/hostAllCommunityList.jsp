@@ -7,7 +7,6 @@
   request.setCharacterEncoding("UTF-8");
 %> 
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="list"  value="${AllCommunityList}"  />
 <!DOCTYPE html>
 <html>
 <head>
@@ -292,7 +291,7 @@ margin:0px 0px 0px 0px;
 							</thead>
 							<tbody>
 								<c:choose>
-									<c:when test="${empty AllCommunityList}">
+									<c:when test="${empty hostAllCommunityList}">
 										<tr>
 											<td colspan="5">
 												<p>
@@ -301,13 +300,13 @@ margin:0px 0px 0px 0px;
 											</td>
 										</tr>
 									</c:when> 
-									<c:when test="${!empty AllCommunityList}">
-										<c:forEach var="list" items="${AllCommunityList}">
+									<c:when test="${!empty hostAllCommunityList}">
+										<c:forEach var="list" items="${hostAllCommunityList}">
 											<tr>
 												<td>${list.cmnNum}</td>
 												<td>${list.hostInfo_name}</td>
-												<td>${room_number}</td>
-												<td>${list.bigTitle}</td>
+												<td>${list.room_number}</td>
+												<td><a href="${pageContext.request.contextPath}/host/community/modCmnAticleForm.do?cmnNum=${list.cmnNum}">${list.bigTitle}</a></td>
 												<td>${list.creDate}</td>
 											</tr>
 										</c:forEach>

@@ -71,7 +71,7 @@ request.setCharacterEncoding("UTF-8");
 }
 
 #main_fixed {
-	padding: 15px;
+	padding: 15px 0 15px 0; 
 	line-height: 50px;
 	display:block;
 	text-align: center;
@@ -126,7 +126,7 @@ request.setCharacterEncoding("UTF-8");
 
 #main_fixed .host_menu li a:hover{
 	background: #537190;
-	color: #fff;
+	color: #edbc40;
 
 }
 
@@ -254,41 +254,24 @@ ChannelIO('boot', {
 			<b>호스트 페이지</b>
 		</h1>
 		<ul class="host_menu">
-			<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-								class="fas fa-user fa-fw"></i><c:choose>
-									<c:when test="${isLogOn==true and not empty hostInfo }">
-										<i id="main_font_i" class=" fa-fw">${hostInfo.h_id}</i>
-									</c:when>
-									<c:otherwise>
-										<i id="main_font_i" class=" fa-fw">로그인</i>
-
-									</c:otherwise>
-									</c:choose> </a>
-
-							<ul class="dropdown-menu dropdown-menu-end"
-								aria-labelledby="navbarDropdown">
-
-								<c:choose>
-
-									<c:when test="${isLogOn==true and not empty hostInfo}">
-										<li><a class="dropdown-item"
-											href="${contextPath}/member/logout.do">로그아웃</a></li>
-									</c:when>
-
-
-								</c:choose>
-
-
-
-							</ul></li>
-			
-			<!--  <li>
-				<a href="#">로그아웃</a>
-			</li>  -->
 			<li>
-				<a href="${contextPath}/main/main.do">사용자홈</a>
+				<a href="${contextPath}/host/main.do">
+				<i class="fas fa-user fa-fw"></i>
+					<c:choose>
+						<c:when test="${isLogOn==true and not empty hostInfo }">
+							<i id="main_font_i" class=" fa-fw">${hostInfo.h_id}</i>
+						</c:when>
+					<c:otherwise>
+							<i id="main_font_i" class=" fa-fw">로그인</i>
+					</c:otherwise>
+					</c:choose> 
+				</a>
+			</li>
+			<li>
+				<a href="${contextPath}/main/main.do"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;로그아웃</a>
+			</li>
+			<li>
+				<a href="${contextPath}/main/main.do"><i class="fa-solid fa-house-user"></i>&nbsp;오나주홈</a>
 			</li>
 		</ul>
 		
@@ -321,30 +304,11 @@ ChannelIO('boot', {
 					<!-- Sidebar Toggle--></td>
 				<!-- Navbar Search-->
 
-
-
-
-
-
-
-
-
-
 				</td>
 				<td width="100px"
 					style="padding: 0px 0px 0px 0px; margin-left: 5px; line-height: 18px;"
 					id="main_td">
 					<!-- Navbar-->
-
-
-
-
-
-
-
-
-
-
 
 					<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
 						<li class="nav-item dropdown"><a
@@ -429,14 +393,6 @@ ChannelIO('boot', {
 	</div>
 
 	<!-- 	</nav> -->
-
-
-
-
-
-
-
-
 
 
 

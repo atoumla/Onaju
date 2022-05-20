@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.myspring.Onaju.host.goods.vo.HostGoodsVO;
+import com.myspring.Onaju.host.goods.vo.HostImageFileVO;
 import com.myspring.Onaju.host.goods.vo.HostInfoVO;
 
 
@@ -17,14 +18,21 @@ public interface HostGoodsService {
 	/* 이정아 작성 */
 	
 	public List<HostInfoVO> h_login(String h_id) throws Exception;
-	
 	public void addHostInfo(HostInfoVO hostInfoVO) throws Exception;
+	public HostInfoVO hostInfoDetail(int room_code) throws Exception;
+	public void modifyHostInfo(Map hostInfoMap) throws Exception;
+	public void deleteHostInfo(int h_code) throws Exception;
 	
 	public List<HostInfoVO> hostInfoFormlist(String _h_id) throws Exception;
 	
 	public int  addNewGoods(Map newGoodsMap) throws Exception;
-	
 	public void addNewGoodsImage(List imageFileList) throws Exception;
-	
+	public List<HostGoodsVO> selectGoodsList(String _h_id) throws Exception;
+	public Map hostGoodsDetail(int room_code) throws Exception;
+	public List hostGoodsImageFile(int room_code) throws Exception;
+	public void modiHostGoodsInfo(Map goodsMap) throws Exception;
+	public void modiHostGoodsImage(List<HostImageFileVO> imageFileList) throws Exception;
+	public void addNewHostGoodsImage(List imageFileList) throws Exception;
+	public void removeHostGoodsImage(int roomImage_NO) throws Exception;
 	
 }

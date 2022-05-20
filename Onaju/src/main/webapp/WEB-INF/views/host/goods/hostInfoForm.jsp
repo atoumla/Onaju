@@ -81,9 +81,9 @@ table {
 }
 
 section.host_notice {
-	width : 800px;
+	width : 850px;
 	padding: 0 auto;
-	margin: 30px 75px 30px 75px;
+	margin-left: 50px;
 }
 
 .page-title {
@@ -153,6 +153,32 @@ section.host_notice {
 
 .board-table a:hover {
 	text-decoration: underline;
+}
+
+.roomSelect {
+	border: 1px solid #7f9b75;
+    font-size: 15px;
+    height: 28px;
+    padding: 1px;
+    width: 180px;
+    text-align: left;
+
+}
+
+.search_button{
+	font-size: 10pt;
+    color: #666;
+    text-decoration: none;
+    display: inline-block;
+    
+    width: 150px;
+    height: 25px;
+    border: 1px solid #cfcfcf;
+    background: #dedede;
+    color: #626262;
+    text-align: center;
+   
+   
 }
 
 .board-table th {
@@ -233,8 +259,8 @@ section.host_notice {
 }
 
 .noticeBtn2Box {
-	width:750px;
-	margin-left: 500px;
+	width:850px;
+	margin-left: 600px;
 }
 
 .clearfix:after {
@@ -244,8 +270,8 @@ section.host_notice {
 }
 
 .host_contai {
-	width: 750px;
-	margin: 30px 0px 40px 0px;
+	width: 850px;
+	margin: 50px 0px 50px 0px;
 }
 
 .blind {
@@ -296,11 +322,11 @@ section.host_notice {
 											<th class="th-title">사업장 타입</th>
 											<td class="notice_title">
 												<select	class="roomSelect" name="host_type" id="#">
-													<option class="roomOption" value="selected">선택</option>
-													<option class="roomOption" value="hotel">호텔</option>
-													<option class="roomOption" value="motel">모텔</option>
-													<option class="roomOption" value="pension">펜션</option>
-													<option class="roomOption" value="accommodation">숙박</option>
+													<option class="roomOption" selected>선택</option>
+													<option class="roomOption" value="호텔">호텔</option>
+													<option class="roomOption" value="모텔">모텔</option>
+													<option class="roomOption" value="펜션">펜션</option>
+													<option class="roomOption" value="숙박">숙박</option>
 												</select></td>
 											<th class="th-title">방 개수</th>
 											<td class="notice_title"><input type="text" name="room_count" id="#"></td>
@@ -312,7 +338,7 @@ section.host_notice {
 										</tr>
 										<tr>
 											<th class="th-title">계좌번호</th>
-											<td class="notice_title" colspan="2"><input type="text" name="h_sellerNum" id="h_accountNum"></td>
+											<td class="notice_title" colspan="2"><input type="text" name="h_accountNum" id="h_accountNum"></td>
 											<td class="notice_title" ><input type="button" class="search_button" value="계좌번호 확인" onclick="f()"></td>
 										</tr>
 										

@@ -29,6 +29,8 @@ function result(){
 </script>
 </c:if>
 <script type="text/javascript">
+
+
 var cnt=0;
 function fn_addFile(){
 	  if(cnt == 0){
@@ -67,9 +69,10 @@ table {
 } 
 
 section.host_notice {
-	width : 800px;
+	width : 900px;
 	padding: 0 auto;
-	height: 1500px;
+	height: 1000px;
+	margin-left: 50px;
 }
 
 .page-title {
@@ -248,7 +251,7 @@ section.host_notice {
 ul{list-style:none;}
 
 .tabmenu{ 
-	max-width:750px; 
+	max-width:800px; 
 	margin: 0 auto; 
 	position:relative; 
 }
@@ -271,7 +274,7 @@ ul{list-style:none;}
 	}
 
 .tabCon{
-	width:750px;
+	width:800px;
 	display:none; 
 	text-align:left; 
 	padding: 20px;
@@ -335,8 +338,6 @@ ul{list-style:none;}
 	}
 
 
-
-
 #kingpreview {
 	border:0px;
 	width:400px;
@@ -357,14 +358,14 @@ ul{list-style:none;}
 						</div>
 					</div>
 					
-<form name="addNewGoods" action="${contextPath}/host/goods/addNewGoods.do" method="post"  enctype="multipart/form-data">
-<input type="hidden" name="h_id" value="${hostInfo.h_id }">
-	<div class="tabmenu">
-		<ul>
-			<li id="tab1" class="btnCon">
+	<form name="addNewGoods" action="${contextPath}/host/goods/addNewGoods.do" method="post"  enctype="multipart/form-data">
+	<input type="hidden" name="h_id" value="${hostInfo.h_id }">
+		<div class="tabmenu">
+			<ul>
+				<li id="tab1" class="btnCon">
 					<input type="radio" class="tabSelect" checked name="tabmenu" id="tabmenu1"> 
 					<label for="tabmenu1" class="tabRoom">객실 기본 정보</label>
-						 <div class="tabCon">
+						<div class="tabCon">
 							 <table class="board-table">
 								<colgroup>
 					            	<col width="25%"/>
@@ -372,355 +373,331 @@ ul{list-style:none;}
 									<col width="25%"/>
 									<col width="25%"/>
 								</colgroup>
-									<thead>
-										<tr>
-											<th class="th-date">제목</th>
-											<td class="td-date-writer" colspan="3"><input type="text"  name="title" id="title" placeholder="객실에 대한 간략한 소개글" ></td>
-										</tr>
-										<tr>
-											<th class="th-date">개실 타입</th>
-											<td class="td-date-writer"><input type="text" name="room_type" id="#"></td>
-											<th class="th-date">객실 번호</th>
-											<td class="td-date-writer"><input type="number" name="room_number" id="#" placeholder="숫자를 입력해주세요."></td>
-										</tr>
-										
-										<tr>
-											<th class="th-date">기본 입실 시간</th>
-											<td class="td-date-writer"><input type="time" value="15:00" name="able_checkIn" id="#"></td>
-											<!-- 다민시 작성 <input type="time" name="able_checkIn" id="#"> -->
-											<th class="th-date">기본 퇴실 시간</th>
-											<td class="td-date-writer"><input type="time" value="11:00" name="able_checkOut" id="#"></td>
-										</tr>
-										<tr>
-											<th class="th-date">객실요금</th>
-											<td class="td-date-writer">
-												<input type="text" placeholder="요금을 입력해주세요." name="room_fee" id="recycle_result_amt" value="" onkeyup="inputNumberFormat(this)" />
-											</td>
-											<th class="th-date">객실 사용 여부</th>
-											<td class="td-date-writer">
-												<select	class="roomSelect" name="room_status">
-													<option class="roomOption" value="Y">활성</option>
-													<option class="roomOption" value="N">비활성</option>
-												</select>
-											</td>
-										</tr>
-									</thead>
+								<thead>
+									<tr>
+										<th class="th-date">제목</th>
+										<td class="td-date-writer" colspan="3"><input type="text"  name="title" id="title" placeholder="객실에 대한 간략한 소개글" ></td>
+									</tr>
+									<tr>
+										<th class="th-date">개실 타입</th>
+										<td class="td-date-writer"><input type="text" name="room_type" id="#"></td>
+										<th class="th-date">객실 번호</th>
+										<td class="td-date-writer"><input type="number" name="room_number" id="#" placeholder="숫자를 입력해주세요."></td>
+									</tr>
+									<tr>
+										<th class="th-date">기본 입실 시간</th>
+										<td class="td-date-writer"><input type="time" value="15:00" name="able_checkIn" id="#"></td>
+										<!-- 다민시 작성 <input type="time" name="able_checkIn" id="#"> -->
+										<th class="th-date">기본 퇴실 시간</th>
+										<td class="td-date-writer"><input type="time" value="11:00" name="able_checkOut" id="#"></td>
+									</tr>
+									<tr>
+										<th class="th-date">객실요금</th>
+										<td class="td-date-writer">
+											<input type="text" placeholder="요금을 입력해주세요." name="room_fee" id="recycle_result_amt" value="" onkeyup="inputNumberFormat(this)" />
+										</td>
+										<th class="th-date">객실 사용 여부</th>
+										<td class="td-date-writer">
+											<select	class="roomSelect" name="room_status">
+												<option class="roomOption" value="Y">활성</option>
+												<option class="roomOption" value="N">비활성</option>
+											</select>	
+										</td>
+									</tr>
+								</thead>
 							</table>
-							
-							
 							<table class="board-table">
 								<colgroup>
 					            	<col width="25%"/>
 									<col width="auto"/>
 								</colgroup>
-									<thead>
-										<tr>
-											<th class="th-date">사업장 일련번호</th>
-											<td class="td-date-writer" >
-												<select class="roomSelect" name="h_code">
-													
-														<c:forEach var="list" items="${hostInfoFormList }"> 
-															<option class="roomOption"  value="${list.h_code}">${list.h_code}
-															
+								<thead>
+									<tr>
+										<th class="th-date">사업장 일련번호</th>
+										<td class="td-date-writer" >
+											<select class="roomSelect" id="roomSelect1" name="h_code">
+												<c:forEach var="list" items="${hostInfoFormList }"> 
+													<option class="roomOption"  value="${list.h_code}">${list.h_code}	
 													</option>
-												     </c:forEach> 
-												</select>
-											</td>
-										</tr>
-									
-									
-										<tr>
-											<th class="th-date">사업장 상호명</th>
-											<td class="td-date-writer" >
-												<select class="roomSelect" > <!-- name="hostInfo_name" -->
-													
-														<c:forEach var="list" items="${hostInfoFormList }">
-															<option class="roomOption" value="${list.hostInfo_name}">${list.hostInfo_name}
+											     </c:forEach> 
+											</select>
+										</td> 
+									</tr>
+									<tr>
+										<th class="th-date">사업장 상호명</th>
+										<td class="td-date-writer" >
+											<select class="roomSelect" >
+												<c:forEach var="list" items="${hostInfoFormList }">
+													<option class="roomOption" value="${list.hostInfo_name}">${list.hostInfo_name}
 													</option>
-												    </c:forEach>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th class="th-date">우편 번호</th>
-											<td class="td-date-writer" >
-											<select class="roomSelect" > <!-- name="zipcode" -->
-													
-														<c:forEach var="list" items="${hostInfoFormList}">
-															<option class="roomOption" value="${list.zipcode}">${list.zipcode}
+											    </c:forEach>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th class="th-date">우편 번호</th>
+										<td class="td-date-writer" >
+											<select class="roomSelect" > 
+												<c:forEach var="list" items="${hostInfoFormList}">
+													<option class="roomOption" value="${list.zipcode}">${list.zipcode}
 													</option>
-												    </c:forEach>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th class="th-date">도로명 주소</th>
-											<td class="td-date-writer" >
-												<select class="roomSelect" > <!-- name="roadAddress" -->
-													
-														<c:forEach var="list" items="${hostInfoFormList}">
-															<option class="roomOption"  value="${list.roadAddress}">${list.roadAddress}
+											    </c:forEach>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th class="th-date">도로명 주소</th>
+										<td class="td-date-writer" >
+											<select class="roomSelect" >
+												<c:forEach var="list" items="${hostInfoFormList}">
+													<option class="roomOption"  value="${list.roadAddress}">${list.roadAddress}
 													</option>
-												    </c:forEach>
-												</select>
-											</td>
-											
-										</tr>
-										<tr>
-											<th class="th-date">지번 주소</th>
-											<td class="td-date-writer" >${h_hostInfoVO.numberAddress}
-												<select class="roomSelect" > <!-- name="numberAddress"  -->
-													
-														<c:forEach var="list" items="${hostInfoFormList}">
-															<option class="roomOption"  value="${list.numberAddress}">${list.numberAddress}
+											    </c:forEach>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th class="th-date">지번 주소</th>
+										<td class="td-date-writer" >${h_hostInfoVO.numberAddress}
+											<select class="roomSelect" > 
+												<c:forEach var="list" items="${hostInfoFormList}">
+													<option class="roomOption"  value="${list.numberAddress}">${list.numberAddress}
 													</option>
-												    </c:forEach>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th class="th-date">나머지 주소</th>
-											<td class="td-date-writer">
-												<select class="roomSelect" > <!-- name="restAddress" -->
-													
-														<c:forEach var="list" items="${hostInfoFormList}">
-															<option class="roomOption"  value="${list.restAddress}">${list.restAddress}
+											    </c:forEach>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th class="th-date">나머지 주소</th>
+										<td class="td-date-writer">
+											<select class="roomSelect" >
+												<c:forEach var="list" items="${hostInfoFormList}">
+													<option class="roomOption"  value="${list.restAddress}">${list.restAddress}
 													</option>
-												    </c:forEach>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th class="th-date">사업장 타입</th>
-											<td class="td-date-writer">
-												<select class="roomSelect" > <!-- name="host_type" -->
-													
-														<c:forEach var="list" items="${hostInfoFormList}">
-															<option class="roomOption"  value="${list.host_type}">${list.host_type}
+											    </c:forEach>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th class="th-date">사업장 타입</th>
+										<td class="td-date-writer">
+											<select class="roomSelect" > 
+												<c:forEach var="list" items="${hostInfoFormList}">
+													<option class="roomOption"  value="${list.host_type}">${list.host_type}
 													</option>
-												    </c:forEach>
-												</select>											
-											</td>
-										</tr>
-									</thead>
+											    </c:forEach>
+											</select>											
+										</td>
+									</tr>
+								</thead>
 							</table>	
-								<div class="noticeBtn2Box">
-									<button type="submit" class="noticeBtn2 btn-dark2" onClick="fn_add_new_goods(this.form)"
-										<%-- onClick="${contextPath}/host/center/qnaForm.do" --%>>등록</button>
-								</div>
+							<div class="noticeBtn2Box">
+								<button type="submit" class="noticeBtn2 btn-dark2" onClick="fn_add_new_goods(this.form)">등록</button>
+							</div>
 						</div>
-					
-				
-			</li>
-			<li id="tab2" class="btnCon">
+				</li>
+				<li id="tab2" class="btnCon">
 					<input type="radio" class="tabSelect" name="tabmenu" id="tabmenu2"> 
 					<label for="tabmenu2"  class="tabRoom">객실 상세 정보</label>
 						 <div class="tabCon">
 							<table class="board-table">
-										<colgroup>
-							            	<col width="25%"/>
-											<col width="25%"/>
-											<col width="25%"/>
-											<col width="25%"/>
-									</colgroup>
-								<thead>
-										<tr>
-											<th class="th-title">최소 인원</th>
-											<td class="notice_title"><input type="text" name="min_number" id="#"></td>
-											<th class="th-title">최대 인원</th>
-											<td class="notice_title"><input type="text" name="max_number" id="#"></td>
-										</tr>
-										<tr>
-											<th class="th-title">침대 사이즈</th>
-											<td class="notice_title">
-												<select	class="roomSelect" name="bed_type" id="#">
-													<option class="roomOption" value="selected">선택</option>
-													<option class="roomOption" value="single">싱글</option>
-													<option class="roomOption" value="double">더블</option>
-													<option class="roomOption" value="queen">퀸</option>
-													<option class="roomOption" value="king">킹</option>
-													<option class="roomOption" value="largeKing">라지킹</option>
-												</select></td>
-											<th class="th-title">침대 개수</th>
-											<td class="notice_title"><input type="text" name="bed_count" id="#"></td>
-										</tr>
-										<tr>
-											<th class="th-title">욕실 개수</th>
-											<td class="notice_title"><input type="text" name="bath_count" id="#"></td>
-											<td class="notice_title"></td>
-										</tr>
-										<tr>
-												<th class="th-title" rowspan="7">옵션 사항</th> 
-												<td class="notice_title">	
-													<label>
-														<input type="checkbox" class="option_check"  name="tv" value="Y" id="tv" checked> 
-															TV
-													</label>
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="kitchen" value="Y" id="kitchen" checked> 
-														주방
-													</label>
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="pickup" value="Y" id="pickup" checked> 
-														픽업 가능 여부
-													</label>
-														
-												</td>
-										</tr>
-										<tr>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="wifi" value="Y" id="wifi" checked> 
-														무선 인터넷
-													</label>
-												</td>
-													
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="elevator" value="Y" id="elevator" checked> 
-														엘리베이터
-													</label>
-														
-														
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="party_check" value="Y" id="party_check" checked> 
-														파티 가능 여부
-													</label>
-												</td>
-										</tr>	
-										<tr>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="refrigerator" value="Y" id="refrigerator" checked> 
-														냉장고
-													</label>
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="barbecue" value="Y" id="barbecue" checked> 
-														바베큐
-													</label>
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="pet" value="Y" id="pet" checked> 
-														반려동물
-													</label>
-												</td>
-										</tr>
-										<tr>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="hairdryer" value="Y" id="hairdryer" checked> 
-														드라이기
-													</label>
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="pool" value="Y" id="pool" checked> 
-														수영장
-													</label>
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="smoking" value="Y" id="smoking" checked> 
-														흡연 가능 여부
-													</label>
-												</td>
-										</tr>
-										<tr>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="dryer" value="Y" id="dryer" checked> 
-														건조기
-													</label>
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="washer" value="Y" id="washer" checked> 
-														세탁기
-													</label>
-												</td>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="parking" value="Y" id="parking" checked> 
-														주차 가능 여부
-													</label>
-												</td>
-										</tr>
-										<tr>
-												<td class="notice_title">
-													<label>
-														<input type="checkbox" class="option_check"  name="aircon" value="Y" id="aircon" checked> 
-													에어컨
-													</label>
-												</td>
-												<td class="notice_title"></td>
-												<td class="notice_title"></td>
-										</tr>
-										<tr>
-												<td class="notice_title">
-													
-													<label>
-														<input type="checkbox" class="option_check"  name="heater" value="Y" id="heater" checked> 
-													난방
-													</label>
-												</td>
-												<td class="notice_title"></td>
-												<td class="notice_title"></td>
-										</tr>
-										<tr>
-											<th class="th-date">숙소 설명</th>
-											<td class="td-date-writer" colspan="3">
-												<textarea name="content" id="content" placeholder="객실 소개글을 작성해 주세요"></textarea> 
-											</td>
-										</tr>
-									</thead>					
-							</table>
-								<div class="noticeBtn2Box">
-									<button type="submit" class="noticeBtn2 btn-dark2" onClick="fn_add_new_goods(this.form)"
-										<%-- onClick="${contextPath}/host/center/qnaForm.do" --%>>등록</button>
-								</div>
-						</div> 
-			</li>
-			<li id="tab3" class="btnCon">
+								<colgroup>
+					            	<col width="25%"/>
+									<col width="25%"/>
+									<col width="25%"/>
+									<col width="25%"/>
+								</colgroup>
+							<thead>
+								<tr>
+									<th class="th-title">최소 인원</th>
+									<td class="notice_title"><input type="text" name="min_number" id="#"></td>
+									<th class="th-title">최대 인원</th>
+									<td class="notice_title"><input type="text" name="max_number" id="#"></td>
+								</tr>
+								<tr>
+									<th class="th-title">침대 사이즈</th>
+									<td class="notice_title">
+										<select	class="roomSelect" name="bed_type" id="#">
+											<option class="roomOption">선택</option>
+											<option class="roomOption" value="싱글">싱글</option>
+											<option class="roomOption" value="더블">더블</option>
+											<option class="roomOption" value="퀸">퀸</option>
+											<option class="roomOption" value="킹">킹</option>
+											<option class="roomOption" value="라지킹">라지킹</option>
+										</select></td>
+									<th class="th-title">침대 개수</th>
+									<td class="notice_title"><input type="text" name="bed_count" id="#"></td>
+								</tr>
+								<tr>
+									<th class="th-title">욕실 개수</th>
+									<td class="notice_title"><input type="text" name="bath_count" id="#"></td>
+									<th class="th-title"></th>
+									<td class="notice_title"></td>
+								</tr>
+								<tr>
+									<th class="th-title" rowspan="7">옵션 사항</th> 
+									<td class="notice_title">	
+										<label>
+											<input type="checkbox" class="option_check"  name="tv" value="Y" id="tv" checked> 
+												TV
+										</label>
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="kitchen" value="Y" id="kitchen" checked> 
+											주방
+										</label>
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="pickup" value="Y" id="pickup" checked> 
+											픽업 가능 여부
+										</label>	
+									</td>
+								</tr>
+								<tr>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="wifi" value="Y" id="wifi" checked> 
+											무선 인터넷
+										</label>
+									</td>
+										
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="elevator" value="Y" id="elevator" checked> 
+											엘레베이터
+										</label>	
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="party_check" value="Y" id="party_check" checked> 
+											파티 가능 여부
+										</label>
+									</td>
+								</tr>	
+								<tr>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="refrigerator" value="Y" id="refrigerator" checked> 
+											냉장고
+										</label>
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="barbecue" value="Y" id="barbecue" checked> 
+											바베큐
+										</label>
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="pet" value="Y" id="pet" checked> 
+											반려동물
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="hairdryer" value="Y" id="hairdryer" checked> 
+											드라이기
+										</label>
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="pool" value="Y" id="pool" checked> 
+											수영장
+										</label>
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="smoking" value="Y" id="smoking" checked> 
+											흡연 가능 여부
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="dryer" value="Y" id="dryer" checked> 
+											건조기
+										</label>
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="washer" value="Y" id="washer" checked> 
+											세탁기
+										</label>
+									</td>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="parking" value="Y" id="parking" checked> 
+											주차 가능 여부
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<td class="notice_title">
+										<label>
+											<input type="checkbox" class="option_check"  name="aircon" value="Y" id="aircon" checked> 
+										에어컨
+										</label>
+									</td>
+									<td class="notice_title"></td>
+									<td class="notice_title"></td>
+								</tr>
+								<tr>
+									<td class="notice_title">
+										
+										<label>
+											<input type="checkbox" class="option_check"  name="heater" value="Y" id="heater" checked> 
+										난방
+										</label>
+									</td>
+									<td class="notice_title"></td>
+									<td class="notice_title"></td>
+								</tr>
+								<tr>
+									<th class="th-date">숙소 설명</th>
+									<td class="td-date-writer" colspan="3">
+										<textarea name="content" id="content" placeholder="객실 소개글을 작성해 주세요"></textarea> 
+									</td>
+								</tr>
+							</thead>					
+						</table>
+						<div class="noticeBtn2Box">
+							<button type="submit" class="noticeBtn2 btn-dark2" onClick="fn_add_new_goods(this.form)">등록</button>
+						</div>
+					</div> 
+				</li>
+				<li id="tab3" class="btnCon">
 					<input type="radio" class="tabSelect" name="tabmenu" id="tabmenu3"> 
 					<label for="tabmenu3" class="tabRoom">이미지 정보</label>
-						 <div class="tabCon">
-							<table class="board-table">
-										<colgroup>
-							            	<col width="25%" />
-									</colgroup>
-								<thead>
-										<tr>
-											<th class="th-date">이미지
-												<input class="image_button" type="button"  value="파일 추가" onClick="fn_addFile()"/>
-											</th>
-											<td class="td-date-writer" colspan="6">
-												<div id="d_file"> </div>
-											</td>
-										</tr>
-										</thead>
-							
-							</table>
-							
-								<div class="noticeBtn2Box">
-									<button type="submit" class="noticeBtn2 btn-dark2"  onClick="fn_add_new_goods(this.form)"
-										<%-- onClick="${contextPath}/host/center/qnaForm.do" --%>>등록</button>
-								</div>
-						</div> 
-			</li>
-		</ul>
-	</div>
-</form>
-
+					<div class="tabCon">
+						<table class="board-table">
+							<colgroup>
+					            <col width="25%" />
+					    		<col width="auto" />
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="th-date">이미지
+										<input class="image_button" type="button"  value="파일 추가" onClick="fn_addFile()"/>
+									</th>
+									<td class="td-date-writer" colspan="6">
+										<div id="d_file"> </div>
+									</td>
+								</tr>
+							</thead>
+						</table>
+						<div class="noticeBtn2Box">
+							<button type="submit" class="noticeBtn2 btn-dark2"  onClick="fn_add_new_goods(this.form)">등록</button>
+						</div>
+					</div> 
+				</li>
+			</ul>
+		</div>
+	</form>
 </section>
-
 </body>
 </html>
