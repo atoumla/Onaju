@@ -84,6 +84,7 @@ color:black;
 .nav-link:hover #samsun, .nav-link:focus #samsun{
     width: 70%;
     height: 1px;
+    
     border-radius: 20px;
     border: 1px solid black;
     display: inline-block;
