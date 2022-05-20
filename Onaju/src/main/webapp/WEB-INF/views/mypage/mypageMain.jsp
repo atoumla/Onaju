@@ -67,6 +67,18 @@ border: 1px solid #CCCCCC;
 	float:left;
 }
 
+.hb_rec_3_mypage:hover{
+	text-align: center;
+	display: inline-block;
+	width: 134px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1px solid #CCCCCC;
+	padding: 0px 0px 0px 0px;
+	margin: 7px 21px 7px 0px;
+	float:left;
+}
+
 .hb_rec_4 {
 	display: inline-block;
 	width: 240px;
@@ -231,12 +243,25 @@ text-align:left;
 }
 /* <a 태그 부모 태그 전체 확장> */
 #hb_a_main {
-    color: black;
+       color: black;
     text-decoration: none;
     display: block;
     height: 100%;
     margin: 0 auto;
-    border-radius: 20px;
+    border-radius: 9px;
+    background-color: white;
+    opacity: 100%;
+}
+
+#hb_a_main:hover {
+       color: white;
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    border-radius: 9px;
+    background-color: rgb(252,78,130);
+    opacity: 100%;
 }
 </style>
 
@@ -253,31 +278,22 @@ text-align:left;
 		}
 	</script>
 </c:if>
-<script>
+<c:if test='${ not empty message }'>
 
-
-
-function readURL(input) {
-	  
-	  if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function(e) {
-	      document.getElementById('preview').src = e.target.result;
-	    };
-	    reader.readAsDataURL(input.files[0]);
-	  } else {
-	    document.getElementById('preview').src = "";
-	  }
-	
+	<script>
+	window.onload=function()
+	{
+	  result1();
 	}
-	
-	function submitFrofile(){
-		 var a = document.getElementById('u_imageName').value;
-		 alert(a);
-		document.addProfile.submit();
+
+	function result1(){
+		alert('${message}');
 	}
-</script>
+	</script>
+</c:if>
+
 </head>
+
 <body>
 
 	<section class="hb_section_total">
@@ -312,90 +328,100 @@ function readURL(input) {
 		</div>
 		
 		</div>
-		
-		
-		<section class="hb_section_mypagemain">
-		<div style="    width: 100%;
-    height: 220px;
-    border: 1px solid #CCCCCC;
-    border-radius: 12px;
-    float: right;
-">
-		
-		<form action="${contextPath}/member/uploadProfile.do" method="post"  name="addProfile"enctype="multipart/form-data">
-		<div style="width:25%; height:218px;border: 1px solid #CCCCCC; float:left;">
-		<a href="#"style="width:130px; margin-top:10px;height:130px; border: 2px solid #CCCCCC; border-radius:70%; display:block;">
-		<img id="preview" style="width:100%; height:100%; overflow:hidden; z-index:9999;border-radius:70%; border: 0px; ">
-		</a><input type="hidden" name="u_id" value="${memberInfo.u_id }">
-		<div style="width:80%; height:30px;  margin-top:25px;">
-		<input type="hidden" name="imageName" id="imageName" >
-		  <input  type='file' name='u_imageName' id='u_imageName'  />
-		<!-- <div style="  border: 1px solid #CCCCCC; border-radius: 10px; padding: 3px 10px;"  onclick="onclick=document.all.u_imageName.click()"  >프로필 선택</div> -->
-    <div style="    border: 1px solid #CCCCCC;
-    border-radius: 10px;
-    padding: 3px 10px;"  onClick="submitFrofile()" >등록</div>
-  
-		</div>
-		</div>
-		</form>
-		
-	
-		
-				</div>
-		
-		<div class="hb_section_title">
-			<h1 id="h1_left_title">최근 이용 내역</h1>
-		</div>
-		
-		
-		
-		
-		<c:choose>
-  					<c:when test="${empty myOrderList}" >
-    					<tr  height="10">
-      						<td colspan="9">
-         						<p align="center">
-            						<b><span style="font-size:9pt;">여행 정보가 없습니다.</span></b>
-        						</p>
-      						</td>  
-    					</tr>
-  					</c:when>
-  					<c:when test="${!empty myOrderList}" >
-  					
-			<c:forEach  var="item" items="${myOrderList}" varStatus="membersNum" >
-		
-		<div style="width:48%; height:100px; border: 1px solid #CCCCCC; float:left; border-radius:12px;padding:10px;cursor:pointer; margin:10px 0px;"onClick="#">
-		<fmt:setLocale value="en_US" scope="session"/>
-		<fmt:parseDate var="checkIn" value="${ item.checkIn_date }" pattern="EEE MMM dd HH:mm:ss z yyyy" />
-		<fmt:formatDate var="checkIn_date" value="${checkIn}" pattern="yyyy년 MM월 dd일"/>
-		<fmt:parseDate var="checkOut" value="${ item.checkOut_date }" pattern="EEE MMM dd HH:mm:ss z yyyy" />
-		<fmt:formatDate var="checkOut_date" value="${checkOut}" pattern="yyyy년 MM월 dd일"/>
-		
-		<img src="${contextPath}/thumbnails.do?room_code=${item.room_code}&fileName=${item.room_imageName}" style="width:22%; height:100%; float:left;border: 1px solid #CCCCCC;border-radius:12px;">
-		<div style="width:77%; height:25%; float:left; text-align:left; padding-left:10px;margin-top:5px;font-size:14px;font-weight:570;">     ${ item.title }</div>
-		<div style="width:77%; height:25%; float:left; text-align:left; padding-left:10px;margin-top:5px;font-size:14px;font-weight:540;">     호스트: ${ item.h_name }</div>
-		<div style="width:77%; height:25%; float:left; text-align:left; padding-left:10px;margin-top:5px;font-size:14px;font-weight:540;">     ${checkIn_date } ~ ${checkOut_date }</div>
 
-		</div>
-		<div style="width:2%; height:100px; float:left;" ></div>
-		
-		
-		
-		</c:forEach>
-		
-	</c:when>
-          		</c:choose>
-	
-		
+
+		<section class="hb_section_mypagemain">
+			<div
+				style="width: 100%; height: 140px; border: 1px solid #CCCCCC; border-radius: 12px; float: right;">
+
+				<div
+					style="width: 20%; border-right: 1px solid #CCCCCC; height: 138px; float: left;">
+					<a
+						style="width: 80px; margin-top: 10px; height: 80px; border: 2px solid #CCCCCC; border-radius: 70%; display: block;">
+						<img
+						style="width: 100%; height: 100%; overflow: hidden; z-index: 9999; border-radius: 70%; border: 0px;"
+						src="${contextPath}/profileShow.do?u_id=${memberInfo.u_id}&fileName=${memberInfo.u_imageName}">
+
+					</a><input type="hidden" name="u_id" value="${memberInfo.u_id }">
+
+
+					<div
+						style="width: 100%; margin-top: 10px; font-size: 12px; border-radius: 10px; padding: 3px 10px; display: inline-block;">
+						<strong style="font-size: 14px;">${memberInfo.u_name}</strong>님
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="hb_section_title">
+				<h1 id="h1_left_title">최근 이용 내역</h1>
+			</div>
+
+
+
+
+			<c:choose>
+				<c:when test="${empty myOrderList}">
+					<tr height="10">
+						<td colspan="9">
+							<p align="center">
+								<b><span style="font-size: 9pt;">여행 정보가 없습니다.</span></b>
+							</p>
+						</td>
+					</tr>
+				</c:when>
+				<c:when test="${!empty myOrderList}">
+
+					<c:forEach var="item" items="${myOrderList}" varStatus="membersNum">
+
+						<div
+							style="width: 48%; height: 100px; border: 1px solid #CCCCCC; float: left; border-radius: 12px; padding: 10px; cursor: pointer; margin: 10px 0px;"
+							onClick="#">
+							<fmt:setLocale value="en_US" scope="session" />
+							<fmt:parseDate var="checkIn" value="${ item.checkIn_date }"
+								pattern="EEE MMM dd HH:mm:ss z yyyy" />
+							<fmt:formatDate var="checkIn_date" value="${checkIn}"
+								pattern="yyyy년 MM월 dd일" />
+							<fmt:parseDate var="checkOut" value="${ item.checkOut_date }"
+								pattern="EEE MMM dd HH:mm:ss z yyyy" />
+							<fmt:formatDate var="checkOut_date" value="${checkOut}"
+								pattern="yyyy년 MM월 dd일" />
+
+							<img
+								src="${contextPath}/thumbnails.do?room_code=${item.room_code}&fileName=${item.room_imageName}"
+								style="width: 22%; height: 100%; float: left; border: 1px solid #CCCCCC; border-radius: 12px;">
+							<div
+								style="width: 77%; height: 25%; float: left; text-align: left; padding-left: 10px; margin-top: 5px; font-size: 14px; font-weight: 570;">
+								${ item.title }</div>
+							<div
+								style="width: 77%; height: 25%; float: left; text-align: left; padding-left: 10px; margin-top: 5px; font-size: 14px; font-weight: 540;">
+								호스트: ${ item.h_name }</div>
+							<div
+								style="width: 77%; height: 25%; float: left; text-align: left; padding-left: 10px; margin-top: 5px; font-size: 14px; font-weight: 540;">
+								${checkIn_date } ~ ${checkOut_date }</div>
+
+						</div>
+						<div style="width: 2%; height: 100px; float: left;"></div>
+
+
+
+					</c:forEach>
+
+				</c:when>
+			</c:choose>
+
+
 		</section>
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
 
 
 

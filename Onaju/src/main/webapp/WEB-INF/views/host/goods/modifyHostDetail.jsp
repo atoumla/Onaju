@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>사업장 정보 등록하기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	function execDaumPostcode() {
@@ -68,7 +69,95 @@
 					}
 				}).open();
 	}
-</script>
+		
+	
+	function deleteHostInfo(){
+		
+		if(!confirm("삭제 하시겠습니까?")){
+			return false;
+		}else{
+			location.href="${pageContext.request.contextPath }/host/goods/deleteHostInfo.do?h_code=${hostInfoVO.h_code}";
+		}
+	}
+	
+	
+	
+	/* 
+	
+	function deleteHostInfo(h_code){
+	      	$.ajax({
+	    		type : "post",
+	    		async : true, //false인 경우 동기식으로 처리한다.
+	    		url : "${contextPath}/host/goods/deleteHostInfo.do",
+	    		data: {h_code:h_code,
+	    			
+	    		}
+	    		success : function(data, textStatus) {
+	    			alert("이미지를 삭제했습니다!!");
+	                tr.style.display = 'none';
+	    		},
+	    		error : function(data, textStatus) {
+	    			alert("에러가 발생했습니다."+textStatus);
+	    		},
+	    		complete : function(data, textStatus) {
+	    			//alert("작업을완료 했습니다");			
+	    		}
+	    	}); //end ajax	
+	  }	   */ 
+
+/* function fn_modify_hostInfo(h_code, attribute){
+	var fn_modify_hostInfo=document.fn_modify_hostInfo;
+	var value="";
+	if(attribute=='hostInfo_name'){
+		value=fn_modify_hostInfo.hostInfo_name.value;
+	}else if(attribute=='host_type'){
+		for (var i = 0; fn_modify_hostInfo.host_type.length; i++) {
+			if (host_type[i].selected) {
+				value = fn_modify_hostInfo.host_type[i].value;
+				break;
+			}
+		}	
+	}else if(attribute=='h_sellerNum'){
+		value=fn_modify_hostInfo.h_sellerNum.value;
+	}else if(attribute=='h_accountNum'){
+		value=fn_modify_hostInfo.h_accountNum.value;   
+	}else if(attribute=='zipcode'){
+		value=fn_modify_hostInfo.zipcode.value;
+	}else if(attribute=='roadAddress'){
+		value=fn_modify_hostInfo.roadAddress.value;
+	}else if(attribute=='numberAddress'){
+		value=fn_modify_hostInfo.numberAddress.value;
+	}else if(attribute=='restAddress'){
+		value=fn_modify_hostInfo.restAddress.value;	
+	}
+	
+	console.log(attribute);
+
+	$.ajax({
+		type : "post",
+		async : false, //false인 경우 동기식으로 처리한다.
+		url : "${contextPath}/host/goods/modifyHostInfo.do",
+		data : {
+			h_code:h_code,
+			attribute:attribute,
+			value:value
+		},
+		success : function(data, textStatus) {
+			if(data.trim()=='mod_success'){
+				alert("사업장 정보를 수정했습니다.");
+			}else if(data.trim()=='failed'){
+				alert("다시 시도해 주세요.");				
+		},
+		error : function(data, textStatus) {
+			alert("에러가 발생했습니다."+data);
+		},
+		complete : function(data, textStatus) {
+			//alert("작업을완료 했습니다");
+		}
+	}); //end ajax	
+}   */
+ 
+	</script>
 
 
 <style>
@@ -297,7 +386,7 @@ section.host_notice {
 	
 <!-- 바디 시작 -->
 	<section class="host_notice">
-				<form name="addNewhostInfo" action="${contextPath}/host/goods/addHostInfo.do" method="post">
+				<form name="frm_mod_hostInfo" action="${contextPath}/host/goods/modifyHostInfo.do?h_code=${hostInfoVO.h_code}" method="post"  >
 					<div class="host-title">
 						<div class="host_contai">
 							<h3>사업자 정보 등록</h3>
@@ -316,48 +405,48 @@ section.host_notice {
 								<thead>
 										<tr>
 											<th class="th-title">사업장 상호명</th>
-											<td class="notice_title" colspan="3"><input type="text" name="hostInfo_name" id="#"></td>
+											<td class="notice_title" colspan="3"><input type="text" name="hostInfo_name" id="#" value="${hostInfoVO.hostInfo_name}"></td>
 										</tr>
 										<tr>
 											<th class="th-title">사업장 타입</th>
 											<td class="notice_title">
 												<select	class="roomSelect" name="host_type" id="#">
-													<option class="roomOption" selected>선택</option>
+													<option class="roomOption" value="${hostInfoVO.host_type}">${hostInfoVO.host_type}</option>
 													<option class="roomOption" value="호텔">호텔</option>
 													<option class="roomOption" value="모텔">모텔</option>
 													<option class="roomOption" value="펜션">펜션</option>
 													<option class="roomOption" value="숙박">숙박</option>
 												</select></td>
 											<th class="th-title">방 개수</th>
-											<td class="notice_title"><input type="text" name="room_count" id="#"></td>
+											<td class="notice_title"><input type="text" name="room_count" id="#"value="${hostInfoVO.room_count}"></td>
 										</tr>
 										<tr>
 											<th class="th-title">사업자 등록번호</th>
-											<td class="notice_title" colspan="2"><input type="text" name="h_sellerNum" id="h_sellerNum"></td>
+											<td class="notice_title" colspan="2"><input type="text" name="h_sellerNum" id="h_sellerNum" value="${hostInfoVO.h_sellerNum}"></td>
 											<td class="notice_title" ><input type="button" class="search_button" value="등록번호 확인" onclick="f()"></td>
 										</tr>
 										<tr>
 											<th class="th-title">계좌번호</th>
-											<td class="notice_title" colspan="2"><input type="text" name="h_accountNum" id="h_accountNum"></td>
+											<td class="notice_title" colspan="2"><input type="text" name="h_accountNum" id="h_accountNum" value="${hostInfoVO.h_accountNum}"></td>
 											<td class="notice_title" ><input type="button" class="search_button" value="계좌번호 확인" onclick="f()"></td>
 										</tr>
 										
 										<tr>
 											<th class="th-title">우편 번호</th>
-											<td class="notice_title" colspan="2"><input type="text" id="zipcode" name="zipcode"></td>
+											<td class="notice_title" colspan="2"><input type="text" id="zipcode" name="zipcode" value="${hostInfoVO.zipcode}"></td>
 											<td class="notice_title" ><input type="button" class="search_button" value="우편번호 검색" onclick="execDaumPostcode()"></td>
 										</tr>
 										<tr>
 											<th class="th-title">도로명 주소</th>
-											<td class="notice_title" colspan="3"><input type="text" name="roadAddress" id="roadAddress"></td>
+											<td class="notice_title" colspan="3"><input type="text" name="roadAddress" id="roadAddress" value="${hostInfoVO.roadAddress}"></td>
 										</tr>
 										<tr>
 											<th class="th-title">지번 주소</th>
-											<td class="notice_title" colspan="3"><input type="text" name="numberAddress" id="numberAddress"></td>
+											<td class="notice_title" colspan="3"><input type="text" name="numberAddress" id="numberAddress" value="${hostInfoVO.numberAddress}"></td>
 										</tr>
 										<tr>
 											<th class="th-title">나머지 주소</th>
-											<td class="notice_title" colspan="3"><input type="text" name="restAddress" id="restAddress"></td>
+											<td class="notice_title" colspan="3"><input type="text" name="restAddress" id="restAddress"value="${hostInfoVO.restAddress}"></td>
 										</tr>
 										
 									</thead>					
@@ -365,8 +454,9 @@ section.host_notice {
 						</div> 
 					</div>
 					<div class="noticeBtn2Box">
-						<button type="submit" class="noticeBtn2 btn-dark2" onClick="${contextPath}/host/goods/hostInfoList.do">목록</button>
-						<button type="submit" class="noticeBtn2 btn-dark2">등록</button>
+						<button type="submit" class="noticeBtn2 btn-dark2">수정</button>
+						<button type="button" class="noticeBtn2 btn-dark2" id="modityHost" onClick="deleteHostInfo()">삭제</button>
+						<%-- <button type="submit" class="noticeBtn2 btn-dark2" onclick="location.href='${contextPath}/host/goods/deleteHostInfo.do?h_code=${hostInfoVO.h_code}'">삭제</button> --%>
 					</div>		
 				</form>
 		</section>

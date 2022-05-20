@@ -9,7 +9,7 @@ public class HostInfoVO {
 	private String h_id;
 	private String hostInfo_name;
 	private String h_sellerNum;
-	private int h_accountNum;
+	private String h_accountNum;
 	private String zipcode;
 	private String roadAddress;
 	private String numberAddress;
@@ -54,11 +54,11 @@ public class HostInfoVO {
 		this.h_sellerNum = h_sellerNum;
 	}
 
-	public int getH_accountNum() {
+	public String getH_accountNum() {
 		return h_accountNum;
 	}
 
-	public void setH_accountNum(int h_accountNum) {
+	public void setH_accountNum(String h_accountNum) {
 		this.h_accountNum = h_accountNum;
 	}
 

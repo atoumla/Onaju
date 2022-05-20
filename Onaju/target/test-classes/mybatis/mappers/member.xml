@@ -49,7 +49,7 @@
 	</resultMap>	
 
 
-		<!-- 로그인 -->
+	<!-- 로그인 -->
 	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
 	    <![CDATA[
 				select * from u_member  where u_id=#{u_id} 
@@ -140,28 +140,12 @@
 								#{salt})         
    ]]>  
    </insert>    
-   <update id="insertUserProfile" parameterType="java.util.Map"   >
+   <insert id="insertUserProfile" parameterType="java.util.Map"   >
 	<!-- <selectKey resultType="int" keyProperty="roomImage_NO" order="BEFORE"> 
 		SELECT MAX(roomImage_NO)+1 FROM h_roomImage </selectKey> -->
-
-		   update u_member 
-		   <set>
-		   u_imageName = #{u_imageName}
-		   </set>
-		   
-		    where u_id=#{u_id} 
-
-	</update> 
-	
-	<select id="selectRetireMembers" resultMap="memberResult">
-		select * from u_member where del_yn = 'Y'
-	</select>
-	
-	<delete id="deleteRetireMember" parameterType="memberVO">
-		delete from u_member where u_id = #{u_id}
-	</delete>
-
-
-		
+	    <![CDATA[
+		   insert into u_member u_imageName  values #{u_imageName} where u_id=#{u_id} 
+		]]>
+	</insert> 
 
 </mapper>

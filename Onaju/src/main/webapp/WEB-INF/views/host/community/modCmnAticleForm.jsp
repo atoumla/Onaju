@@ -6,19 +6,66 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %> 
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%-- <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="goods"  value="${goodsMap.goods}"  />
-<c:set var="imageFileList"  value="${goodsMap.imageFileList}"  />
+<c:set var="hostCommunityVO"  value="${hostCommunityVO}"  /> --%>
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Life Style 글쓰기</title>
+<title>Life Style 글 수정</title>
 <script src="http://madalla.kr/js/jquery-1.8.3.min.js"></script>
 
 <script type="text/javascript">
+function fn_modify_community(cmnNum, attribute){
+	var frm_mod_community=document.frm_mod_community;
+	var value="";
+	if(attribute=='bigTitle'){
+		value=frm_mod_community.bigTitle.value;
+	}else if(attribute=='smallTitle'){
+		value=frm_mod_community.smallTitle.value;
+	}else if(attribute=='content'){
+		value=frm_mod_community.content.value;
+	}else if(attribute=='room_code'){
+		for (var i = 0; frm_mod_community.room_code.length; i++) {
+			if (frm_mod_community.room_code[i].selected) {
+				value = frm_mod_community.room_code[i].value;
+				break;
+			}
+		}	
+	}
+	console.log(attribute);
 
+	$.ajax({
+		type : "post",
+		async : false, //false인 경우 동기식으로 처리한다.
+		url : "${contextPath}/host/community/modCmnConfirm.do",
+		processData: false,
+		contentType: false,
+		data : {
+			cmnNum:cmnNum,
+			attribute:attribute,
+			value:value
+		},
+		success : function(data, textStatus) {
+			if(data.trim()=='mod_success'){
+				alert("커뮤니티 글을 수정했습니다.");
+			}else if(data.trim()=='failed'){
+				alert("다시 시도해 주세요.");				
+		},
+		error : function(data, textStatus) {
+			alert("에러가 발생했습니다."+data);
+		},
+		complete : function(data, textStatus) {
+			//alert("작업을완료 했습니다");
+		}
+	}); //end ajax	
+}  
+	
+	
+//사진 미리보기	
 function readURL(input,preview) {
 	   //  alert(preview);
 	    if (input.files && input.files[0]) {
@@ -29,22 +76,27 @@ function readURL(input,preview) {
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	  }  
+//사진 수정
+function modifyImageFile(fileId,cmnNum){
+    // alert(fileId);
+	  var form = $('#modify')[0];
+      var formData = new FormData(form);
+      formData.append("cmnImg", $('#'+fileId)[0].files[0]);
+      formData.append("cmnNum", cmnNum);
+      
+      $.ajax({
+        url: '${contextPath}/host/community/modCmnAticleForm.do',
+        processData: false,
+        contentType: false,
+        data: formData,
+        type: 'POST',
+	      success: function(result){
+	         alert("이미지를 수정했습니다!");
+	       }
+      });
+  }
 
-function uploadImgPreview() {
-	let fileInfo = document.getElementById("upImgFile").files[0];
-	let reader = new FileReader();
-
-    reader.onload = function() {
-        document.getElementById("thumbnailImg").src = reader.result;
-    };
-	if( fileInfo ) {
-        reader.readAsDataURL( fileInfo );
-    }
-
-}
-
-
-	
+//슬라이드 사진
 $(function () {
     var n = 0;
     var pos = 0;
@@ -338,14 +390,14 @@ ul {
 	
 <!-- 바디 시작 -->
 				<section class="host_notice">
-				<form id="introduce" action="${contextPath}/host/community/addNewCommunity.do?room_code=${goods.room_code}" method="post"  enctype="multipart/form-data">
+				<form id="modify" action="${contextPath}/host/community/modCmnAticleForm.do?cmnNum=${hostCommunityVO.cmnNum}" method="post" enctype="multipart/form-data">
 					<div class="host-title">
 						<div class="host_contai">
-							<h3>Life Style 글쓰기</h3>
+							<h3>Life Style 글 수정</h3>
 						</div>
 					</div>
 					
-					<div class="container1">
+					<%-- <div class="container1">
 				       
 				           
 				          
@@ -360,17 +412,17 @@ ul {
 				           
 								 </ul>
 								</div>
-				        </div>
+				        </div> --%>
  					
 					
 					
 					<div class="container2">
 						<div class="bigInfo">
-							<input type="text"  name="host_type" id="host_type" value="${goods.host_type}" >
-							<input type="text" id="bigTitle" name="bigTitle" placeholder="커뮤니티 제목을 작성해 주세요."/>
+							<input type="text"  name="host_type" id="host_type" value="${hostCommunityVO.host_type}" >
+							<input type="text" id="bigTitle" name="bigTitle" value="${hostCommunityVO.bigTitle}"/>
 							<div class="h_profile">
 								<img id="profile" src="https://g-grafolio.pstatic.net/20190525_229/15587582702938v22E_JPEG/20190330-IMG_5851.jpg?type=w896_2" alt="프로필이미지">
-								<p id="hostid">${goods.h_id}</p>
+								<p id="hostid">${hostCommunityVO.h_id}</p>
 							</div>
 						</div>
 					</div>
@@ -388,12 +440,12 @@ ul {
 										<tr>
 											<th class="th-date">사업장 상호명 </th>
 											<td class="td-date-writer" >
-											<input type="text"  name="hostInfo_name" id="hostInfo_name" value="${goods.hostInfo_name}" >
+											<input type="text"  name="hostInfo_name" id="hostInfo_name" value="${hostCommunityVO.hostInfo_name}" >
 											
 											</td>
 											<th scope="col" class="th-writer">주소</th>
 											<td class="td-date-writer" colspan="2">
-											<input type="text"  name="hostInfo_name" id="hostInfo_name" value="${goods.roadAddress}" >
+											<input type="text"  name="hostInfo_name" id="hostInfo_name" value="${hostCommunityVO.roadAddress}" >
 											
 											
 											</td>
@@ -402,44 +454,44 @@ ul {
 										<tr>
 										<th class="th-title">상호명</th>
 										<td class="notice_title">
-										<input type="text"  name="title" id="title" value="${goods.title}" >
+										<input type="text"  name="title" id="title" value="${hostCommunityVO.title}" >
 											
 										</td>
 										<th class="th-title">객실타입</th>
 										<td class="notice_title">
-											<input type="text"  name="room_type" id="room_type" value="${goods.room_type}" >
+											<input type="text"  name="room_type" id="room_type" value="${hostCommunityVO.room_type}" >
 											
 										</td>
 										<th class="th-title">객실번호</th>
 										<td class="notice_title">
-										<input type="text"  name="room_number" id="room_number" value="${goods.room_number}" >
+										<input type="text"  name="room_number" id="room_number" value="${hostCommunityVO.room_number}" >
 										</td>
 									</tr>
 									<tr>
 										
 										<th class="th-title">객실요금</th>
 										<td class="notice_title">
-										<input type="text"  name="room_fee" id="room_fee" value="${goods.room_fee}" >
+										<input type="text"  name="room_fee" id="room_fee" value="${hostCommunityVO.room_fee}" >
 											
 										</td>
 										<th class="th-title">입실 시간</th>
 										<td class="notice_title">
-										<input type="text"  name="able_checkIn" id="able_checkIn" value="${goods.able_checkIn}" >
+										<input type="text"  name="able_checkIn" id="able_checkIn" value="${hostCommunityVO.able_checkIn}" >
 											 
 										</td>
 										<th class="th-title">퇴실 시간</th>
 										<td class="notice_title">
-										<input type="text"  name="able_checkOut" id="able_checkOut" value="${goods.able_checkOut}" >
+										<input type="text"  name="able_checkOut" id="able_checkOut" value="${hostCommunityVO.able_checkOut}" >
 										</td>
 									<tr>	
 										<th class="th-title">최소 인원</th>
 										<td class="notice_title">
-										<input type="text"  name="min_number" id="min_number" value="${goods.min_number}" >
+										<input type="text"  name="min_number" id="min_number" value="${hostCommunityVO.min_number}" >
 											
 										</td>
 										<th class="th-title">최대 인원</th>
 										<td class="notice_title">
-										<input type="text"  name="max_number" id="max_number" value="${goods.max_number}" >
+										<input type="text"  name="max_number" id="max_number" value="${hostCommunityVO.max_number}" >
 											 
 										</td>
 									</tr>
@@ -453,19 +505,21 @@ ul {
 						
 							<div class="introduce">
 								<div class="introduce_title">
-									<textarea id="smallTitle" name="smallTitle" placeholder="객실 소제목을 작성해 주세요."></textarea>
+									<textarea id="smallTitle" name="smallTitle" value="${hostCommunityVO.smallTitle}"></textarea>
 								</div>	
 								<div class="introduce_image">
-									 <input type="file" id="upImgFile" name="cmnImg" onChange="uploadImgPreview();" accept="image/*">
-									 <img id="thumbnailImg" src="">
+									 <input type="file" id="upImgFile" name="cmnImg"  value="${hostCommunityVO.cmnImg}" onChange="readURL(this,'preview');" accept="image/*">
+									 <img  id="preview" width=700 height=750 src="${contextPath}/download.do?cmnNum=${hostCommunityVO.cmnNum}&cmnImg=${hostCommunityVO.cmnImg}" />
+									 <input  type="button" value="수정"  onClick="modifyImageFile('cmnImg','${hostCommunityVO.cmnNum}')"/>
 								</div>	
 								<div class="introduce_text">
-									<textarea name="content" id="content" name="content" placeholder="객실 소개글을 작성해 주세요"></textarea> 
+									<textarea name="content" id="content" name="content"  value="${hostCommunityVO.content}"></textarea> 
 								</div>
 							</div>
 							<div class="noticeBtn2Box">
-									<button type="submit" class="noticeBtn2 btn-dark2">등록</button>
-							</div>
+								<button type="submit" class="noticeBtn2 btn-dark2" onClick="fn_modify_community(this.form)">수정</button>
+								<a href="${contextPath}/host/community/deleteHostCommunity.do?cmnNum=${hostCommunityVO.cmnNum}"><button type="submit" class="noticeBtn2 btn-dark2">삭제</button></a>
+						</div>
 						
 					</div>
 					</form>

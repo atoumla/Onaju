@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List Style 목록</title>
+<title>등록 객실 목록</title>
 <style>
 @charset "utf-8";
 table {
@@ -168,29 +168,38 @@ section.host_notice {
 }
 
 .noticeBtn2 {
+	width: 108px;
+	padding: 0;
+	font-weight: 400;
+}
+.noticeBtn2 {
 	display: inline-block;
-    margin: 30px 0px 0px 750px;
-    font-size: 16px;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    text-transform: uppercase;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-    width: 100px;
-    height: 30px;
+	padding: 5px 30px;
+	margin: 30px 0 30px 0px;
+	float : right;
+	font-size: 16px;
+	font-weight: 400;
+	background: transparent;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid transparent;
+	text-transform: uppercase;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .btn-dark2 {
@@ -252,9 +261,7 @@ section.host_notice {
     font-size: 13px;
     
 }
-.newCmn{
-margin:0px 0px 0px 0px;
-}
+
 </style>
 </head>
 
@@ -263,7 +270,7 @@ margin:0px 0px 0px 0px;
 	<section class="host_notice">
 		<div class="host-title">
 			<div class="host_contai">
-				<h3>List Style 목록</h3>
+				<h3>등록 객실 목록</h3>
 			</div>
 		</div>
 
@@ -275,39 +282,39 @@ margin:0px 0px 0px 0px;
 						<table class="board-table">
 							<colgroup>
 								<col width="5%" />
-								<col width="10%" />
-								<col width="5%" />
 								<col width="20%" />
+								<col width="auto" />
+								<col width="10%" />
 								<col width="10%" />
 							</colgroup>
 							<thead>
 								<tr>
 									<th scope="col" class="">NO.</th>
-									<th scope="col" class="">상호 명</th>
-									<th scope="col" class="">객실 번호</th>
-									<th scope="col" class="">제목</th>
-									<th scope="col" class="">작성 날짜</th>
+									<th scope="col" class="">상호명</th>
+									<th scope="col" class="">주소</th>
+									<th scope="col" class="">타입</th>
+									<th scope="col" class="">객실개수</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:choose>
-									<c:when test="${empty hostAllCommunityList}">
+									<c:when test="${empty hostInfoList}">
 										<tr>
-											<td colspan="5">
+											<td colspan="7">
 												<p>
-													<b><span>작성한 게시글이 없습니다.</span></b>
+													<b><span>작성한 사업장이 없습니다.</span></b>
 												</p>
 											</td>
 										</tr>
 									</c:when> 
-									<c:when test="${!empty hostAllCommunityList}">
-										<c:forEach var="list" items="${hostAllCommunityList}">
+									<c:when test="${!empty hostInfoList}">
+										<c:forEach var="list" items="${hostInfoList}">
 											<tr>
-												<td>${list.cmnNum}</td>
+												<td>${list.h_code}</td>
 												<td>${list.hostInfo_name}</td>
-												<td>${list.room_number}</td>
-												<td><a href="${pageContext.request.contextPath}/host/community/modCmnAticleForm.do?cmnNum=${list.cmnNum}">${list.bigTitle}</a></td>
-												<td>${list.creDate}</td>
+												<td><a href="${pageContext.request.contextPath}/host/goods/modifyHostDetail.do?h_code=${list.h_code}">${list.roadAddress}</a></td>
+												<td>${list.host_type}</td>
+												<td>${list.room_count}</td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -315,7 +322,7 @@ margin:0px 0px 0px 0px;
 							</tbody>
 						</table>
 							<div>
-								<a id="newCmn" href="${contextPath}/host/community/cmnAticleForm1.do"><button type="submit" class="noticeBtn2 btn-dark2">새 글쓰기</button></a>
+								<button type="submit" class="noticeBtn2 btn-dark2" onClick="${contextPath}/host/goods/hostInfoForm.do">신규 등록</button>
 							</div>
 					</div>
 				</div>

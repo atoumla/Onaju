@@ -35,25 +35,65 @@ request.setCharacterEncoding("UTF-8");
 .nav-link {
 	position: relative;
 	padding: 10px 0px;
-	color: #fc4e82;
+	
 	width: auto;
 	margin-top: 20px;
 	height: 40px;
-	border: 1px solid rgb(252, 78, 130);
+	border: 1.5px solid #DDDDDD;
 	background-color: white;
 	border-radius: 30px;
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link #main_font_i, .nav-link #main_user_icon{
+	
+	color:black;
+	opacity:70%;
+	
+}
+
+.nav-link:hover , .nav-link:focus {
 	z-index: 5000;
-	color: #fff;
-	background:#fc4e82;
+color:black;
+box-shadow: 0 2px 4px rgba(0,0,0,0.18);
 	width: auto;
 	margin-top: 20px;
 	height: 40px;
 	border-radius: 30px;
+	opacity:100%;
 }
 
+.nav-link:hover #main_font_i,.nav-link:hover #main_user_icon .nav-link:focus #main_font_i, .nav-link:hover #main_user_icon{	
+color:black;
+	opacity:100%;
+}
+
+
+#samsun{
+    width: 70%;
+    height: 1px;
+    border-radius: 20px;
+    border: 1px solid black;
+    display: inline-block;
+    float: left;
+    margin: 1px 0px;
+    opacity:50%;
+        transition: 0.5s;
+    
+}
+
+.nav-link:hover #samsun, .nav-link:focus #samsun{
+    width: 70%;
+    height: 1px;
+    
+    border-radius: 20px;
+    border: 1px solid black;
+    display: inline-block;
+    float: left;
+    margin: 1px 0px;
+    opacity:80%;
+        transition: 0.5s;
+    
+}
 /* .nav-link:visited {
 	color: rgb(252, 78, 130);
 }
@@ -69,7 +109,6 @@ request.setCharacterEncoding("UTF-8");
 #navbarDropdown:hover {
 	
 } */
-
 #main_fixed {
 	line-height: 50px;
 	display: inline-block;
@@ -115,20 +154,25 @@ request.setCharacterEncoding("UTF-8");
 	font-size: 18px;
 	text-align: center;
 }
-
 #main_font_i {
-	font-family: inherit;
-	margin: 0px 2px 0px 2px;
-	font-size: 12px;
-	font-weight: 550;
+    font-family: inherit;
+    margin: 0px ;
+    font-size: 12px;
+    font-weight: 550;
+    float: left;
+    width: 40%;
+    height: 100%;
+ 
+    padding: 10px 0px;
+    text-align: left;
 }
-</style><script>
-function fn_joinform_check(){
-	var people_num = $("#people_num").val();
 
-		
-			alert(people_num);
-		}
+</style><script>
+	function fn_joinform_check() {
+		var people_num = $("#people_num").val();
+
+		alert(people_num);
+	}
 </script>
 </head>
 
@@ -196,24 +240,42 @@ function fn_joinform_check(){
 					<!-- Navbar-->
 					
 					<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-								class="fas fa-user fa-fw"></i><c:choose>
+						<li class="nav-item dropdown"><a style="padding: 0px 0px;"
+							class="nav-link" id="navbarDropdown" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false"> <c:choose>
+									<c:when test="${not empty isLogOn and not empty memberInfo }">
+										<img src="${contextPath}/profileShow.do?u_id=${memberInfo.u_id}&fileName=${memberInfo.u_imageName}"
+										style="border-radius:70%; border:1px solid #CCCCCC;width:30px;height:30px;float: left;margin: 3px 5px 3px 6px;">
+									</c:when>
+									<c:otherwise>
+									<i
+										style="border-radius:70%;padding:5px 0px 5px 5px; width:30px;height:30px;float: left;margin: 4px 5px 4px 6px;">
+										<i class="fas fa-user fa-fw" id="main_user_icon"></i></i>
+									</c:otherwise>
+								</c:choose> 
+								<c:choose>
 									<c:when test="${not empty isLogOn and not empty memberInfo }">
 										<i id="main_font_i" class=" fa-fw">${memberInfo.u_name}</i>
 									</c:when>
 									<c:when test="${not empty isLogOn and not empty userInfo }">
 										<i id="main_font_i" class=" fa-fw">${userInfo.s_name}</i>
-									</c:when>
-									<c:when test="${not empty isLogOn and not empty nonmemberInfo }">
+									</c:when> 
+									<c:when
+										test="${not empty isLogOn and not empty nonmemberInfo }">
 										<i id="main_font_i" class=" fa-fw">${nonmemberInfo.u_name}</i>
 									</c:when>
 									<c:otherwise>
 										<i id="main_font_i" class=" fa-fw">로그인</i>
 
 									</c:otherwise>
-									</c:choose> </a>
+								</c:choose> <i style="width: 20%; padding: 13px 0px 12px 0px;height: 100%; float: left; display: inline-block;">
+								<i id="samsun"></i>
+<i id="samsun"></i>
+<i id="samsun"></i>
+								</i>
+
+
+						</a>
 
 							<ul class="dropdown-menu dropdown-menu-end"
 								aria-labelledby="navbarDropdown">

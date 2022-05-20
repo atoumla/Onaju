@@ -18,14 +18,23 @@ public interface HostGoodsDAO {
 	
 	
 	/* 이정아 작성 */ 
-	
+	/* 사업자등록 */
 	public List<HostInfoVO> hostLogin(String h_id) throws DataAccessException;
-	
 	public void insertNewHostInfo(HostInfoVO hostInfoVO) throws DataAccessException;
-	
 	public List<HostInfoVO> hostInfoFormlist(String _h_id) throws DataAccessException;
+	public HostInfoVO hostInfoDetail(int h_code) throws DataAccessException;
+	public void updateHostInfo(Map hostInfoMap) throws DataAccessException;
+	public void deleteHostInfo(int h_code) throws DataAccessException;
 	
+	/* 상품관련 */
 	public int insertNewGoods(Map newGoodsMap) throws DataAccessException;
-	
 	public void insertGoodsImageFile(List fileList)  throws DataAccessException;
+	public List<HostGoodsVO> selectGoodsList(String h_id) throws DataAccessException;
+	public HostGoodsVO selectHostGoodsDetail(int room_code) throws DataAccessException;
+	public List selectHostGoodsImageFileList(int room_code) throws DataAccessException;
+	public void updateHostGoodsInfo(Map goodsMap) throws DataAccessException;
+	public void updateHostGoodsImage(List<HostImageFileVO> imageFileList) throws DataAccessException;
+	public void insertHostGoodsImageFile(List fileList)  throws DataAccessException;
+	public void deleteHostGoodsImage(int roomImage_NO) throws DataAccessException;
+		
 }

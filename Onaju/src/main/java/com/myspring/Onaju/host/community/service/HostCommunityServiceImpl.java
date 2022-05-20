@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.Onaju.host.community.dao.HostCommunityDAO;
 import com.myspring.Onaju.host.community.vo.HostCommunityVO;
+import com.myspring.Onaju.host.goods.vo.HostInfoVO;
 
 @Service("hostCommunityService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -49,7 +50,17 @@ public class HostCommunityServiceImpl implements HostCommunityService{
 	
 	@Override
 	public List<HostCommunityVO> hostAllCommunityList(String h_id) throws Exception{
+		
 		return hostCommunityDAO.hostAllCommunityList(h_id);
 	}
-
+	
+	@Override
+	public HostCommunityVO modCommunity(int cmnNum) throws Exception{
+		return hostCommunityDAO.modCommunity(cmnNum);
+	}
+	
+	@Override
+	public void deleteHostCommunity(int cmnNum) throws Exception{
+		hostCommunityDAO.deleteHostCommunity(cmnNum);
+	}
 }

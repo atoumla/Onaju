@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.myspring.Onaju.host.goods.vo.HostGoodsVO;
 import com.myspring.Onaju.host.goods.vo.HostImageFileVO;
 import com.myspring.Onaju.host.goods.vo.HostInfoVO;
-import com.myspring.Onaju.host.vo.HostVO;
 
 @Repository("goodsDAO")
 public class HostGoodsDAOImpl implements HostGoodsDAO{
@@ -39,8 +38,7 @@ public class HostGoodsDAOImpl implements HostGoodsDAO{
 
 	@Override
 	public List<HostImageFileVO> selectGoodsDetailImage(String room_code) throws DataAccessException {
-		List<HostImageFileVO> imageList = (ArrayList) sqlSession.selectList("mapper.hostGoods.selectHostGoodsDetailImage",
-				room_code);
+		List<HostImageFileVO> imageList = (ArrayList) sqlSession.selectList("mapper.hostGoods.selectHostGoodsDetailImage",room_code);
 		return imageList;
 	}
 	
@@ -48,17 +46,16 @@ public class HostGoodsDAOImpl implements HostGoodsDAO{
 	
 	
 	/* 이정아 작성 */
+	/* 사업자 관련 */ 
 
 	@Override
 	public List<HostInfoVO> hostLogin(String h_id) throws DataAccessException{
 		
-		System.out.println("호스트나와랑");
+		System.out.println("호스트인포 서비스");
 		List<HostInfoVO> hostInfoList = (ArrayList)sqlSession.selectList("mapper.hostGoods.hostLogin",h_id); 
 		   System.out.println(hostInfoList);
 		return hostInfoList;
-
 	}
-	
 	
 	@Override
 	public void insertNewHostInfo(HostInfoVO hostInfoVO) throws DataAccessException{
@@ -71,25 +68,91 @@ public class HostGoodsDAOImpl implements HostGoodsDAO{
 		List<HostInfoVO>  hostInfoFormlist = (List)sqlSession.selectList("mapper.hostGoods.selectHostInfoList",_h_id);
 		return hostInfoFormlist;
 	}
-
 	
+	@Override
+	public HostInfoVO hostInfoDetail(int h_code) throws DataAccessException {
+		HostInfoVO hostInfoVO = new HostInfoVO();
+		hostInfoVO = (HostInfoVO)sqlSession.selectOne("mapper.hostGoods.hostInfoDetail",h_code);
+		return hostInfoVO;
+	}
+	@Override
+	public void updateHostInfo(Map hostInfoMap) throws DataAccessException {
+		System.out.println("DAO의 hostInfoMap : " + hostInfoMap);
+		sqlSession.update("mapper.hostGoods.updateHostInfo",hostInfoMap);
+	}
+	
+	@Override
+	public void deleteHostInfo(int h_code) throws DataAccessException{
+		sqlSession.delete("mapper.hostGoods.deleteHostInfo",h_code);
+	}
 
+
+	/* 상품 관련 */ /* 등록 */
 	@Override
 	 public int insertNewGoods(Map newGoodsMap) throws DataAccessException {
-
 		  sqlSession.insert("mapper.hostGoods.insertNewGoods",newGoodsMap);
-		
-
 		  return Integer.parseInt(String.valueOf(newGoodsMap.get("room_code")));
 		 }
 	
 	@Override
 	public void insertGoodsImageFile(List fileList) throws DataAccessException {
 		for (int i = 0; i < fileList.size(); i++) {
-			HostImageFileVO imageFileVO = (HostImageFileVO) fileList.get(i);
-			sqlSession.insert("mapper.hostGoods.insertGoodsImageFile", imageFileVO);
+			HostImageFileVO HostImageFileVO = (HostImageFileVO) fileList.get(i);
+			sqlSession.insert("mapper.hostGoods.insertGoodsImageFile", HostImageFileVO);
 		}
 	}
+	/* 목록 */
+	@Override
+	public List<HostGoodsVO> selectGoodsList(String h_id) throws DataAccessException {
+		List<HostGoodsVO> hostGoodsList = (List) sqlSession.selectList("mapper.hostGoods.selectGoodsList", h_id);return hostGoodsList;
+	}
+	
+	/* 수정 목록*/ 
+	
+	@Override
+	public HostGoodsVO selectHostGoodsDetail(int room_code) throws DataAccessException{
+		HostGoodsVO hostgoodsBean = new HostGoodsVO();
+		hostgoodsBean = (HostGoodsVO)sqlSession.selectOne("mapper.hostGoods.selectHostGoodsDetail", room_code);
+		return hostgoodsBean;
+	}
+	
+	@Override
+	public List selectHostGoodsImageFileList(int room_code) throws DataAccessException {
+		List imageList=new ArrayList();
+		imageList = (List)sqlSession.selectList("mapper.hostGoods.selectHostGoodsImageFileList",room_code);
+		return imageList;
+	}
+	
+	/* 수정 상세 */
+	
+	@Override
+	public void updateHostGoodsInfo(Map goodsMap) throws DataAccessException {
+		System.out.println("DAO의 goodsMap : " + goodsMap);
+		sqlSession.update("mapper.hostGoods.updateHostGoodsInfo",goodsMap);
+	}
+	
+	@Override
+	public void updateHostGoodsImage(List<HostImageFileVO> imageFileList) throws DataAccessException {
+		
+		for(int i=0; i<imageFileList.size();i++){
+			HostImageFileVO HostImageFileVO = imageFileList.get(i);
+			sqlSession.update("mapper.hostGoods.updateHostGoodsImage",HostImageFileVO);	
+		}
+		
+	}
+	@Override
+	public void insertHostGoodsImageFile(List fileList)  throws DataAccessException {
+		for(int i=0; i<fileList.size();i++){
+			HostImageFileVO HostImageFileVO=(HostImageFileVO)fileList.get(i);
+			sqlSession.insert("mapper.hostGoods.insertHostGoodsImageFile",HostImageFileVO);
+		}
+	}
+	
+	@Override
+	public void deleteHostGoodsImage(int roomImage_NO) throws DataAccessException{
+		sqlSession.delete("mapper.hostGoods.deleteHostGoodsImage",roomImage_NO);
+	}
+	
 
 	
 	

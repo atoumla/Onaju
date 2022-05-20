@@ -36,6 +36,8 @@ import com.myspring.Onaju.s_member.S_memberVO;
 @RequestMapping(value = "/member")
 public class MemberControllerImpl extends BaseController implements MemberController {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\onaju\\host_room_image";
+	private static final String CURR_IMAGE_REPO_PATH_MEMBER = "C:\\onaju\\member_profile";
+
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -104,20 +106,34 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		String imageFileName = null;
 		String viewName = (String) multipartRequest.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		
 
 		Map newGoodsMap = new HashMap();
+		
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
 			String value = multipartRequest.getParameter(name);
 			newGoodsMap.put(name, value);
 		}
+		
 		String u_id = (String) newGoodsMap.get("u_id");
 		HttpSession session = multipartRequest.getSession();
+		MemberVO memberInfo = (MemberVO) session.getAttribute("memberInfo");
+		String u_imageName = memberInfo.getU_imageName();
+		
+		if(u_imageName != "" || u_imageName != null) { // 이미지가 있을시 삭제 하는 구문
+			deleteFileproFile(u_imageName, u_id);
+			
+		}
+		
+		
 		List<MemberVO> imageFileList = profileupload(multipartRequest);
 		if (imageFileList != null && imageFileList.size() != 0) {
 			for (MemberVO imageFileVO : imageFileList) {
 				imageFileVO.setU_id(u_id);
+				
+				
 			}
 			newGoodsMap.put("imageFileList", imageFileList);
 		}
@@ -125,35 +141,39 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		String message = null;
 
 		try {
+			
+			
 			 memberService.addNewUserProfile(newGoodsMap);
 
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (MemberVO imageFileVO : imageFileList) {
 					imageFileName = imageFileVO.getU_imageName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + imageFileName);
-					File destDir = new File(CURR_IMAGE_REPO_PATH + "\\" + u_id);
+					File srcFile = new File(CURR_IMAGE_REPO_PATH_MEMBER + "\\" + "temp" + "\\" + imageFileName);
+					File destDir = new File(CURR_IMAGE_REPO_PATH_MEMBER + "\\" + u_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir, true);
 				}
 			}
 
-			message = "객실 등록 완료";
+			message = "프로필 등록 완료";
 
 		} catch (Exception e) {
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (MemberVO imageFileVO : imageFileList) {
 					imageFileName = imageFileVO.getU_imageName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + imageFileName);
+					File srcFile = new File(CURR_IMAGE_REPO_PATH_MEMBER + "\\" + "temp" + "\\" + imageFileName);
 					srcFile.delete();
 				}
 			}
-			message = "실패";
+			message = "알 수 없는 이유로 실패하였습니다.";
 
 			e.printStackTrace();
 		}
+	  MemberVO mem = (MemberVO) memberService.login(newGoodsMap);
+	  
+	    session.removeAttribute("memberInfo");
+	    session.setAttribute("memberInfo", mem);
 		mav.addObject("message", message);
-		System.out.println(message);
-		mav.setViewName("forward:/host/goods/addNewGoodsForm.do");
-
+		mav.setViewName("forward:/mypage/Mypage3.do");
 		return mav;
 	}
 			
@@ -264,7 +284,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 
 				HttpSession session = request.getSession();
 				session = request.getSession();
-String u_id = memberVO.getU_id();
+				String u_id = memberVO.getU_id();
 				mav.addObject("u_id", u_id);
 				System.out.println(u_id);
 

@@ -14,7 +14,6 @@ import com.myspring.Onaju.host.goods.dao.HostGoodsDAO;
 import com.myspring.Onaju.host.goods.vo.HostGoodsVO;
 import com.myspring.Onaju.host.goods.vo.HostImageFileVO;
 import com.myspring.Onaju.host.goods.vo.HostInfoVO;
-import com.myspring.Onaju.host.vo.HostVO;
 
 
 @Service("hostGoodsService")
@@ -40,54 +39,108 @@ public class HostGoodsServiceImpl implements HostGoodsService{
 		Map hostgoodsMap=new HashMap();
 		HostGoodsVO hostgoodsVO = goodsDAO.selectGoodsDetail(room_code);
 		hostgoodsMap.put("goodsVO", hostgoodsVO);
-		
-		 List<HostImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(room_code);
-		 hostgoodsMap.put("imageList", imageList);
-		
+		/*
+		 * List<HostImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(room_code);
+		 * hostgoodsMap.put("imageList", imageList);
+		 */
 		return hostgoodsMap;
 	}
 
 	
 	
-	
 	/* 이정아 작성 */
+	/* 사업자 관련 */ 
 	
 	@Override
 	public List<HostInfoVO> h_login(String h_id) throws Exception{
-		return goodsDAO.hostLogin(h_id);
-			
+		return goodsDAO.hostLogin(h_id);	
 	}
-	
-	
 	@Override
 	public void addHostInfo(HostInfoVO hostInfoVO) throws Exception{
 		goodsDAO.insertNewHostInfo(hostInfoVO);
-	}
-	
+	}	
 	public List<HostInfoVO> hostInfoFormlist(String _h_id) throws Exception{
 		return goodsDAO.hostInfoFormlist(_h_id);
 	}
+	@Override
+	public HostInfoVO hostInfoDetail(int h_code) throws Exception {
+		return goodsDAO.hostInfoDetail(h_code);
+	}	
 	
+	@Override
+	public void modifyHostInfo(Map hostInfoMap) throws Exception{
+		System.out.println("서비스의 hostInfoMap : " + hostInfoMap);
+		goodsDAO.updateHostInfo(hostInfoMap);
+		
+	}
 	
+	@Override
+	public void deleteHostInfo(int h_code) throws Exception {
+		goodsDAO.deleteHostInfo(h_code);
+	}
 	
+
+	/* 상품 관련 */ /* 등록 */
 	@Override
 	public int addNewGoods(Map newGoodsMap) throws Exception {
 		int room_code = goodsDAO.insertNewGoods(newGoodsMap);
-		
-		  ArrayList<HostImageFileVO> imageFileList = (ArrayList) newGoodsMap.get("imageFileList"); 
-		  for (HostImageFileVO imageFileVO : imageFileList) { imageFileVO.setRoom_code(room_code); }
-		  goodsDAO.insertGoodsImageFile(imageFileList);
-		 
+
+		ArrayList<HostImageFileVO> imageFileList = (ArrayList) newGoodsMap.get("imageFileList");
+		for (HostImageFileVO hostImageFileVO : imageFileList) {
+			hostImageFileVO.setRoom_code(room_code);
+		}
+		goodsDAO.insertGoodsImageFile(imageFileList);
+
 		System.out.println(room_code);
 		return room_code;
 	}
-	
 	@Override
 	public void addNewGoodsImage(List imageFileList) throws Exception{
+		
 		goodsDAO.insertGoodsImageFile(imageFileList);
+	}	
+	/* 목록 */
+	@Override
+	public List<HostGoodsVO> selectGoodsList(String _h_id) throws Exception{
+		return goodsDAO.selectGoodsList(_h_id);
+	}
+	/* 수정 목록 */
+	@Override
+	public Map hostGoodsDetail(int room_code) throws Exception {
+		Map goodsMap = new HashMap();
+		HostGoodsVO hostGoodsVO = goodsDAO.selectHostGoodsDetail(room_code);
+		List imageFileList = goodsDAO.selectHostGoodsImageFileList(room_code);
+		goodsMap.put("goods", hostGoodsVO);
+		goodsMap.put("imageFileList", imageFileList);
+		return goodsMap;
 	}
 	
+	@Override
+	public List hostGoodsImageFile(int room_code) throws Exception{
+		List imageList = goodsDAO.selectHostGoodsImageFileList(room_code);
+		return imageList;
+	}
 	
+	/* 수정 상세 */
+	@Override
+	public void modiHostGoodsInfo(Map goodsMap) throws Exception{
+		System.out.println("서비스의 goodsMap : " + goodsMap);
+		goodsDAO.updateHostGoodsInfo(goodsMap);
+		
+	}	
+	@Override
+	public void modiHostGoodsImage(List<HostImageFileVO> imageFileList) throws Exception{
+		goodsDAO.updateHostGoodsImage(imageFileList); 
+	}
+	@Override
+	public void addNewHostGoodsImage(List imageFileList) throws Exception{
+		goodsDAO.insertHostGoodsImageFile(imageFileList);
+	}
+	
+	@Override
+	public void removeHostGoodsImage(int roomImage_NO) throws Exception{
+		goodsDAO.deleteHostGoodsImage(roomImage_NO);
+	}
 	
 
 }
