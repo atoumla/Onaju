@@ -55,7 +55,19 @@ request.setCharacterEncoding("UTF-8");
 	border: 1px solid #CCCCCC;
 	padding: 0px 0px 0px 0px;
 	margin: 7px 21px 7px 0px;
-	float:left;
+	float: left;
+}
+
+.hb_rec_3_mypage:hover {
+	text-align: center;
+	display: inline-block;
+	width: 134px;
+	height: 50px;
+	border-radius: 10px;
+	border: 2px solid #CCCCCC;
+	padding: 0px 0px 0px 0px;
+	margin: 7px 21px 7px 0px;
+	float: left;
 }
 
 .hb_rec_4 {
@@ -232,14 +244,33 @@ padding: 30px 0px;
 }
 /* <a 태그 부모 태그 전체 확장> */
 #hb_a_main {
-color:black;
-
+	padding: 15px;
+	color: black;
 	text-decoration: none;
 	display: block;
 	height: 100%;
+	font-size: 15px;
+	font-weight: 580;
 	margin: 0 auto;
-	border-radius: 20px;
+	border-radius: 9px;
+	background-color: white;
+	opacity: 70%;
 }
+
+#hb_a_main:hover {
+	padding: 15px;
+	color: black;
+	text-decoration: none;
+	display: block;
+	height: 100%;
+	font-size: 15px;
+	font-weight: 580;
+	margin: 0 auto;
+	border-radius: 9px;
+	background-color: white;
+	opacity: 100%;
+	box-shadow: 4px 8px 4px rgb(0 0 0 / 18%);
+	}
 </style>
 </head>
 <body>
@@ -263,23 +294,23 @@ color:black;
 		<div class="hb_section_mypagenav margin_left_0">
 
 			<div class="hb_rec_3_mypage">
-				<a id="hb_a_main" href="${contextPath}/mypage/mypageMain.do"><br>이용내역조회</a>
+				<a id="hb_a_main" href="${contextPath}/mypage/mypageMain.do">이용내역조회</a>
 			</div>
 			<div class="hb_rec_3_mypage">
-				<a id="hb_a_main" href="${contextPath}/mypage/myCart.do"><br>장바구니</a>
+				<a id="hb_a_main" href="${contextPath}/mypage/myCart.do">장바구니</a>
 			</div>
 			<div class="hb_rec_3_mypage">
-				<a id="hb_a_main" href="${contextPath}/mypage/Mypage3.do"><br>회원정보수정</a>
+				<a id="hb_a_main" href="${contextPath}/mypage/Mypage3.do">회원정보수정</a>
+			</div>
+			<div class="hb_rec_3_mypage"style="border: 2px solid #CCCCCC;">
+				<a id="hb_a_main"  style="box-shadow: 4px 8px 4px rgb(0 0 0 / 18%);"href="${contextPath}/mypage/Mypage4.do">적립금 내역</a>
 			</div>
 			<div class="hb_rec_3_mypage">
-				<a id="hb_a_main" href="${contextPath}/mypage/Mypage4.do"><br>적립금 내역</a>
-			</div>
-			<div class="hb_rec_3_mypage">
-				<a id="hb_a_main" href="${contextPath}/mypage/Mypage5.do"><br>내 리뷰 내역</a>
+				<a id="hb_a_main" href="${contextPath}/mypage/Mypage5.do">내 리뷰 내역</a>
 			</div>
 					
 			<div class="hb_rec_3_mypage">
-				<a id="hb_a_main" href="${contextPath}/mypage/delMember.do"><br>회원 탈퇴</a>
+				<a id="hb_a_main" href="${contextPath}/mypage/delMember.do">회원 탈퇴</a>
 			</div>
 
 		</div>
