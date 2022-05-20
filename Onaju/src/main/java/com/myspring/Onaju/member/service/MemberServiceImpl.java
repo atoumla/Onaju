@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.myspring.Onaju.host.goods.vo.HostImageFileVO;
 import com.myspring.Onaju.member.dao.MemberDAO;
 import com.myspring.Onaju.member.vo.MemberVO;
 import com.myspring.Onaju.s_member.S_memberDAO;
@@ -228,7 +230,11 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void addNewUserProfile(Map newGoodsMap) throws Exception{
-		memberDAO.insertUserProfile(newGoodsMap);
+		String u_id = (String) newGoodsMap.get("u_id");
+		 ArrayList<MemberVO> imageFileList = (ArrayList) newGoodsMap.get("imageFileList"); 
+		  for (MemberVO imageFileVO : imageFileList) { imageFileVO.setU_id(u_id); }
+		
+		memberDAO.insertUserProfile(imageFileList);
 	}
 	
 	

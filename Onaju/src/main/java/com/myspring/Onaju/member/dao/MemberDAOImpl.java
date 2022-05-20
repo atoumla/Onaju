@@ -61,9 +61,10 @@ public class MemberDAOImpl implements MemberDAO{
 
 	}
 	@Override
-	public void insertUserProfile(Map newGoodsMap) throws DataAccessException {
-		
-			sqlSession.insert("mapper.member.insertUserProfile", newGoodsMap);
-		
+	public void insertUserProfile(List fileList) throws DataAccessException {
+		for (int i = 0; i < fileList.size(); i++) {
+			MemberVO profileVO = (MemberVO) fileList.get(i);
+			sqlSession.update("mapper.member.insertUserProfile", profileVO);
+		}
 	}
 }

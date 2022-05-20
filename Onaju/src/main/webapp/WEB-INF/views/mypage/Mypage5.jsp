@@ -13,9 +13,18 @@ request.setCharacterEncoding("UTF-8");
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="author" content="" />
+<meta name="description" content="Colrolib Templates">
+<meta name="author" content="Colrolib">
+<meta name="keywords" content="Colrolib Templates">
 
 <style>
-
+hr{
+border: 1px solid #CCCCCC;
+} 
 .hb_rec_1 {
 	float: left;
 	display: inline-block;
@@ -73,8 +82,6 @@ request.setCharacterEncoding("UTF-8");
 	height: 100%
 }
 
-
-
 .hb_section_mypagenav {
 	display: inline-block;
     width: 160px;
@@ -85,9 +92,10 @@ request.setCharacterEncoding("UTF-8");
 
 
 .hb_section_mypagemain {
+padding: 30px 0px;
 	display: inline-block;
-	width: 920px;
-	height:600px;
+	width: 84%;
+	height:100%;
 }
 
 
@@ -95,14 +103,6 @@ request.setCharacterEncoding("UTF-8");
 	display: inline-block;
 	width: 920px;
 	height:170px;
-}
-
-.hb_section_mypagemain_2 {
-	border: 1px solid #CCCCCC;
-
-	display: inline-block;
-	width: 770px;
-	height:168px;
 }
 
 .hb_section_mypagemain_profile {
@@ -144,15 +144,54 @@ request.setCharacterEncoding("UTF-8");
 }
 
 .hb_section_title {
-	padding: 20px 4px 30px 180px;
+	padding: 20px 4px 15px 0px;
 	display: inline-block;
-	width: 1100px;
-	height: 100px;
+	width: 100%;
+	height: 100%;
 }
 /* <인라인블럭 왼쪽 고정> */
 .margin_left_0 {
 	float: left;
 	margin-left: 0px;
+	border:0;
+}
+
+.margin_left_1{
+width:750px;
+height:168px;
+text-align:left;
+}
+#grade{
+display: inline-block;
+width:150px;
+height:33px;
+border:0;
+outline:0;
+border-radius: 5px;
+font-weight:bold;
+color:white;
+}
+
+#img2 {
+display: inline-block;
+float:left;
+width:200px;
+height:150px;
+}
+#btbt2{
+background-color:#FC4E82;
+display: inline-block;
+width:50px;
+height:25px;
+border:0;
+outline:0;
+border-radius: 5px;
+float:right;
+font-weight:bold;
+color:white;
+}
+.r1{
+text-align:left;
 }
 /* <인라인블럭 왼쪽 고정> */
 .margin_right_0 {
@@ -178,28 +217,43 @@ request.setCharacterEncoding("UTF-8");
 }
 
 #h1_left {
+
 	text-align: left;
 	font-size: 25px;
 }
 
 #h1_left_title{
 
-	color: rgb(252, 78, 130);
+	color:  #5C5C5C;
 	font-weight: 600;
 	text-align: left;
-	font-size: 35px;
+	font-size: 30px;
 }
 /* <a 태그 부모 태그 전체 확장> */
 #hb_a_main {
-color:black;
-
-	text-decoration: none;
-	display: block;
-	height: 100%;
-	margin: 0 auto;
-	border-radius: 20px;
+    color: black;
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    border-radius: 20px;
 }
 </style>
+
+<c:if test='${ empty isLogOn }'>
+
+	<script>
+		window.onload = function() {
+			result();
+		}
+
+		function result() {
+			alert("로그인이 필요한 서비스입니다.");
+			location.href="${contextPath}/main/main.do"
+		}
+	</script>
+</c:if>
+
 </head>
 <body>
 
@@ -207,17 +261,6 @@ color:black;
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-		<section class="hb_section_title">
-			<h1 id="h1_left_title">내 리뷰 내역</h1>
-		</section>
 	
 	<div style="width:170px; height:1000px; float:left;">
 		<!-- <상위 네비게이션>-->
@@ -227,7 +270,7 @@ color:black;
 				<a id="hb_a_main" href="${contextPath}/mypage/mypageMain.do"><br>이용내역조회</a>
 			</div>
 			<div class="hb_rec_3_mypage">
-				<a id="hb_a_main" href="${contextPath}/mypage/Mypage2.do"><br>즐겨찾기</a>
+				<a id="hb_a_main" href="${contextPath}/mypage/myCart.do"><br>장바구니</a>
 			</div>
 			<div class="hb_rec_3_mypage">
 				<a id="hb_a_main" href="${contextPath}/mypage/Mypage3.do"><br>회원정보수정</a>
@@ -238,7 +281,7 @@ color:black;
 			<div class="hb_rec_3_mypage">
 				<a id="hb_a_main" href="${contextPath}/mypage/Mypage5.do"><br>내 리뷰 내역</a>
 			</div>
-			
+					
 			<div class="hb_rec_3_mypage">
 				<a id="hb_a_main" href="${contextPath}/mypage/delMember.do"><br>회원 탈퇴</a>
 			</div>
@@ -246,20 +289,83 @@ color:black;
 		</div>
 		
 		</div>
+		
+		
 		<section class="hb_section_mypagemain">
+			<div
+				style="width: 100%; height: 140px; border: 1px solid #CCCCCC; border-radius: 12px; float: right;">
+
+				<div
+					style="width: 20%; border-right: 1px solid #CCCCCC; height: 138px; float: left;">
+					<a 
+						style="width: 80px; margin-top: 10px; height: 80px; border: 2px solid #CCCCCC; border-radius: 70%; display: block;">
+						<img
+						style="width: 100%; height: 100%; overflow: hidden; z-index: 9999; border-radius: 70%; border: 0px;"
+						src="${contextPath}/profileShow.do?u_id=${memberInfo.u_id}&fileName=${memberInfo.u_imageName}">
+
+					</a><input type="hidden" name="u_id" value="${memberInfo.u_id }">
+
+
+					<div
+						style="width: 100%; margin-top: 10px; font-size: 12px; border-radius: 10px; padding: 3px 10px; display: inline-block;">
+						<strong style="font-size: 14px;">${memberInfo.u_name}</strong>님
+					</div>
+				</div>
+			</div>
+		<div class="hb_section_title">
+			<h1 id="h1_left_title">내 리뷰 내역</h1>
+		</div>
 		
 		
 		
-		<section class="hb_section_mypagemain_1">
-		<div class="hb_section_mypagemain_profile margin_left_0"><h1>프로필</h1></div>
-		<div class="hb_section_mypagemain_2"></div>
+		
+		<c:choose>
+  					<c:when test="${empty reviewList}" >
+    					<tr  height="10">
+      						<td colspan="9">
+         						<p align="center">
+            						<b><span style="font-size:9pt;">작성한 리뷰가 없습니다.</span></b>
+        						</p>
+      						</td>  
+    					</tr>
+  					</c:when>
+  					<c:when test="${!empty reviewList}" >
+  					
+			<c:forEach  var="item" items="${reviewList}" varStatus="membersNum" >
+					<c:set var="i" value="${i +1 }"/>
+		<form name="cartPay_${i}" id="cartPay_${i}"action="${contextPath}/order/orderCartGoods.do" method="post">
+
+		<div style="width:48%; height:100px; border: 1px solid #CCCCCC; float:left; border-radius:12px;padding:10px;cursor:pointer; margin:10px 0px;"onClick="cartPay('cartPay_' +${i})">
+		<fmt:setLocale value="en_US" scope="session"/>
+		<fmt:parseDate var="checkIn" value="${ item.checkIn_date }" pattern="EEE MMM dd HH:mm:ss z yyyy" />
+		<fmt:formatDate var="checkIn_date" value="${checkIn}" pattern="yyyy년 MM월 dd일"/>
+		<fmt:parseDate var="checkOut" value="${ item.checkOut_date }" pattern="EEE MMM dd HH:mm:ss z yyyy" />
+		<fmt:formatDate var="checkOut_date" value="${checkOut}" pattern="yyyy년 MM월 dd일"/>
+		<input type="hidden" name="cart_code" value="${ item.cart_code }">
+				<input type="hidden" name="total" value="${ item.total }">
+				<input type="hidden" name="people_count" value="${ item.people_count }">
+				<input type="hidden" name="room_fee" value="${ item.room_fee }">
+				<input type="hidden" name="room_code" value="${ item.room_code }">
+				<input type="hidden" name="checkIn_date" value="${ item.checkIn_date }">
+				<input type="hidden" name="checkOut_date" value="${ item.checkOut_date }">
+				<input type="hidden" name="h_code" value="${ item.h_code }">
 		
 		
+		<img src="${contextPath}/thumbnails.do?room_code=${item.room_code}&fileName=${item.room_imageName}" style="width:22%; height:100%; float:left;border: 1px solid #CCCCCC;border-radius:12px;">
+		<div style="width:77%; height:25%; float:left; text-align:left; padding-left:10px;margin-top:5px;font-size:14px;font-weight:570;">     ${ item.title }</div>
+		<div style="width:77%; height:25%; float:left; text-align:left; padding-left:10px;margin-top:5px;font-size:14px;font-weight:540;">     호스트: ${ item.h_name }</div>
+		<div style="width:77%; height:25%; float:left; text-align:left; padding-left:10px;margin-top:5px;font-size:14px;font-weight:540;">     ${checkIn_date } ~ ${checkOut_date }</div>
+
+		</div>
+		<div style="width:2%; height:100px; float:left;" ></div>
 		
 		
+		</form>
+		</c:forEach>
 		
-		</section>
-		
+	</c:when>
+          		</c:choose>
+	
 		
 		</section>
 		

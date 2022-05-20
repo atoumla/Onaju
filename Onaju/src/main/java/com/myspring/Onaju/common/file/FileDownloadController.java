@@ -18,7 +18,8 @@ import net.coobird.thumbnailator.Thumbnails;
 @Controller
 public class FileDownloadController {
 	private static String CURR_IMAGE_REPO_PATH = "C:\\onaju\\host_room_image";
-	
+	private static final String CURR_IMAGE_REPO_PATH_MEMBER = "C:\\onaju\\member_profile";
+
 	@RequestMapping("/download")
 	protected void download(@RequestParam("fileName") String fileName,
 		                 	@RequestParam("room_code") String room_code,
@@ -48,6 +49,21 @@ public class FileDownloadController {
 			                 HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
 		String filePath=CURR_IMAGE_REPO_PATH+"\\"+room_code+"\\"+fileName;
+		File image=new File(filePath);
+		
+		if (image.exists()) { 
+			Thumbnails.of(image).size(121,154).outputFormat("png").toOutputStream(out);
+		}
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
+		out.close();
+	}
+	@RequestMapping("/profileShow.do")
+	protected void profileShow(@RequestParam("fileName") String fileName,
+                            	@RequestParam("u_id") String u_id,
+			                 HttpServletResponse response) throws Exception {
+		OutputStream out = response.getOutputStream();
+		String filePath=CURR_IMAGE_REPO_PATH_MEMBER+"\\"+u_id+"\\"+fileName;
 		File image=new File(filePath);
 		
 		if (image.exists()) { 

@@ -140,12 +140,17 @@
 								#{salt})         
    ]]>  
    </insert>    
-   <insert id="insertUserProfile" parameterType="java.util.Map"   >
+   <update id="insertUserProfile" parameterType="java.util.Map"   >
 	<!-- <selectKey resultType="int" keyProperty="roomImage_NO" order="BEFORE"> 
 		SELECT MAX(roomImage_NO)+1 FROM h_roomImage </selectKey> -->
-	    <![CDATA[
-		   insert into u_member u_imageName  values #{u_imageName} where u_id=#{u_id} 
-		]]>
-	</insert> 
+
+		   update u_member 
+		   <set>
+		   u_imageName = #{u_imageName}
+		   </set>
+		   
+		    where u_id=#{u_id} 
+
+	</update> 
 
 </mapper>
