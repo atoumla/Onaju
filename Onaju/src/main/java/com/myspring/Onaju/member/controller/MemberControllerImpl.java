@@ -267,7 +267,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		ResponseEntity resEntity = null;
 		String result = memberService.overlapped(id);
 		resEntity = new ResponseEntity(result, HttpStatus.OK);
-		return result;
+		return resEntity;
 	}
 
 	@Override
