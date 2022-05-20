@@ -53,7 +53,14 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	<servlet>
+	  <servlet-name>ImageServlet</servlet-name>
+	  <servlet-class>kr.or.ddit.img.ImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>ImageServlet</servlet-name>
+	  <url-pattern>/ImageServlet</url-pattern>
+	</servlet-mapping>
 
 
 

@@ -285,7 +285,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 
 				HttpSession session = request.getSession();
 				session = request.getSession();
-String u_id = memberVO.getU_id();
+				String u_id = memberVO.getU_id();
 				mav.addObject("u_id", u_id);
 				System.out.println(u_id);
 

@@ -48,7 +48,21 @@ public class HostCommunityDAOImpl implements HostCommunityDAO {
 	@Override
 	public List<HostCommunityVO> hostAllCommunityList(String h_id) throws DataAccessException {
 		List<HostCommunityVO> hostAllCommunityList = (ArrayList) sqlSession.selectList("mapper.hostCommunity.hostAllCommunityList", h_id);
-		System.out.println(hostAllCommunityList);
+		System.out.println("hostAllCommunityList#########"+hostAllCommunityList);
 		return hostAllCommunityList;
+	}
+	
+	@Override
+	public HostCommunityVO modCommunity(int cmnNum)throws DataAccessException{
+		HostCommunityVO hostCommunityVO= new HostCommunityVO();
+		hostCommunityVO = (HostCommunityVO) sqlSession.selectOne("mapper.hostCommunity.modCommunity", cmnNum);
+		System.out.println("modCommunity#########"+hostCommunityVO);
+		return hostCommunityVO;
+		
+	}
+	
+	@Override
+	public void deleteHostCommunity(int cmnNum) throws DataAccessException{
+		sqlSession.delete("mapper.hostCommunity.deleteHostCommunity",cmnNum);
 	}
 }

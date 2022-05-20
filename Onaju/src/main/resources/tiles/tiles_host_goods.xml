@@ -28,22 +28,7 @@
 		<put-attribute name="title" value="호스트 상품 온오프" />
 		<put-attribute name="body" value="/WEB-INF/views/host/goods/gON_OFF.jsp" />
 	</definition>
-	<definition name="/host/goods/addNewGoodsForm" extends="hostLayout">
-		<put-attribute name="title" value="호스트 상품 온오프" />
-		<put-attribute name="body" value="/WEB-INF/views/host/goods/addNewGoodsForm.jsp" />
-	</definition>
-	
-	<definition name="/host/goods/hostInfoForm" extends="hostLayout">
-		<put-attribute name="title" value="호스트 상품 목록" />
-		<put-attribute name="body" value="/WEB-INF/views/host/goods/hostInfoForm.jsp" />
-	</definition>
-	<definition name="/host/goods/hostInfoList" extends="hostLayout">
-		<put-attribute name="title" value="호스트 상품 목록" />
-		<put-attribute name="body" value="/WEB-INF/views/host/goods/hostInfoList.jsp" />
-	</definition>
-	
-	
-		<definition name="/host/goods/searchGoodsMap" extends="baseLayout">
+	<definition name="/host/goods/searchGoodsMap" extends="baseLayout">
 		<put-attribute name="title" value="쇼핑몰 메인페이지" />
 		<put-attribute name="body" value="/WEB-INF/views//goods/searchGoodsMap.jsp" />
 	</definition>
@@ -52,6 +37,41 @@
 		<put-attribute name="title" value="쇼핑몰 메인페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/goods/goodsInformation_1.jsp" />
 	</definition>
+	
+	
+	<!-- 이정아 작성 -->
+	
+	
+	<definition name="/host/goods/hostInfoForm" extends="hostLayout">
+		<put-attribute name="title" value="호스트 사업장 등록페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/hostInfoForm.jsp" />
+	</definition>
+	<definition name="/host/goods/hostInfoList" extends="hostLayout">
+		<put-attribute name="title" value="호스트 사업장 목록" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/hostInfoList.jsp" />
+	</definition>
+	<definition name="/host/goods/modifyHostDetail" extends="hostLayout">
+		<put-attribute name="title" value="호스트 사업장 디테일" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/modifyHostDetail.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="/host/goods/addNewGoodsForm" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 등록 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/addNewGoodsForm.jsp" />
+	</definition>
+	<definition name="/host/goods/hostGoodsList" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 리스트" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/hostGoodsList.jsp" />
+	</definition>
+	<definition name="/host/goods/modiHostGoodsForm" extends="hostLayout">
+		<put-attribute name="title" value="호스트 상품 수정" />
+		<put-attribute name="body" value="/WEB-INF/views/host/goods/modiHostGoodsForm.jsp" />
+	</definition>
+	
+	
+		
 	
 	
 </tiles-definitions>	

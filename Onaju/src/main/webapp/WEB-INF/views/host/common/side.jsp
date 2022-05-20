@@ -113,7 +113,7 @@ request.setCharacterEncoding("UTF-8");
  	<!-- <div class="ohnaju-text">사이드 메뉴</div> -->
  	<ul class="ohnaju-ul">
  		<li class="ohnaju-li">
- 			<a href="#" class="ohnaju-first-btn"><i style="color:#7f9b75" class="fa-solid fa-solid fa-users"></i>&emsp;마이 페이지</a>
+ 			<a href="#" class="ohnaju-first-btn"><i style="color:#edbc40" class="fa-solid fa-solid fa-users"></i>&emsp;마이 페이지</a>
  				<ul class="ohnaju-first-show">
  					<li class="ohnaju-li"><a href="${contextPath }/host/mypage/mypage.do">호스트 정보 수정</a></li>
  					<li class="ohnaju-li"><a href="${contextPath }/host/goods/hostInfoList.do">사업장 목록</a></li>
@@ -122,17 +122,17 @@ request.setCharacterEncoding("UTF-8");
  			   </ul>
  		</li>
  		<li class="ohnaju-li">
- 			<a href="#" class="ohnaju-second-btn"><i style="color:#7f9b75" class="fa-solid fa-cart-shopping"></i>&emsp;주문 관리</a>
+ 			<a href="#" class="ohnaju-second-btn"><i style="color:#edbc40" class="fa-solid fa-cart-shopping"></i>&emsp;주문 관리</a>
  				<ul class="ohnaju-second-show">
  					<li class="ohnaju-li"><a href="${contextPath }/host/reservation/reList.do">예약 정보 목록</a></li>
  					<li class="ohnaju-li"><a href="${contextPath }/host/reservation/reSearchDetail.do">예약 정보 검색</a></li>
  					<li class="ohnaju-li"><a href="${contextPath }/host/reservation/reDelete.do">취소 및 환불</a></li>
  			   </ul>
  		</li>
- 		<li class="ohnaju-li"><a href="#"  class="ohnaju-third-btn"><i style="color:#7f9b75"  class="fa-solid fa-hotel"></i>&emsp;상품 관리</a>
+ 		<li class="ohnaju-li"><a href="#"  class="ohnaju-third-btn"><i style="color:#edbc40"  class="fa-solid fa-hotel"></i>&emsp;상품 관리</a>
  			<ul class="ohnaju-third-show">
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/hostGoodsList.do">상품 목록</a></li>
  				<li class="ohnaju-li"><a href="${contextPath }/host/goods/addNewGoodsForm.do">상품 등록</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/goods/hostGoodsList.do">상품 목록 작성중</a></li>
  				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gInsert.do">기존 상품 등록</a></li>
  				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gUpdate.do">기존 상품 수정</a></li>
  				<li class="ohnaju-li"><a href="${contextPath }/host/goods/gDelete.do">기존 상품 삭제</a></li>
@@ -140,27 +140,27 @@ request.setCharacterEncoding("UTF-8");
  				
  			</ul>
  		</li>
- 		<li class="ohnaju-li"><a href="#" class="ohnaju-fourth-btn"><i style="color:#7f9b75" class="fa-solid fa-credit-card"></i>&emsp;정산 페이지</a>
+ 		<li class="ohnaju-li"><a href="#" class="ohnaju-fourth-btn"><i style="color:#edbc40" class="fa-solid fa-credit-card"></i>&emsp;정산 페이지</a>
  			<ul class="ohnaju-fourth-show">
  				<li class="ohnaju-li"><a href="${contextPath }/host/money/mList.do">매출 관리</a></li>
  				<li class="ohnaju-li"><a href="${contextPath }/host/money/mCalculate.do">정산 페이지</a></li>
  			</ul>
  		</li> 		
- 		<li class="ohnaju-li"><a href="#" class="ohnaju-fifth-btn"><i style="color:#7f9b75"  class="fa-solid fa-children"></i>&emsp;커뮤니티 관리</a>
+ 		<li class="ohnaju-li"><a href="#" class="ohnaju-fifth-btn"><i style="color:#edbc40"  class="fa-solid fa-children"></i>&emsp;커뮤니티 관리</a>
  			<ul class="ohnaju-fifth-show">
  				<li class="ohnaju-li"><a href="${contextPath }/host/community/hostAllCommunityList.do">Life Style 목록</a></li>
  				<li class="ohnaju-li"><a href="${contextPath }/host/community/cmnAticleForm1.do">Life Style 글 등록</a></li>
  				<li class="ohnaju-li"><a href="${contextPath }/host/community/dropOut.do">임시</a></li>
  			</ul>
  		</li> 	
- 		<li class="ohnaju-li"><a href="#" class="ohnaju-sixth-btn"><i style="color:#7f9b75" class="fa-solid fa-building-user"></i>&emsp;고객 관리</a>
+ 		<li class="ohnaju-li"><a href="#" class="ohnaju-sixth-btn"><i style="color:#edbc40" class="fa-solid fa-building-user"></i>&emsp;고객 관리</a>
  			<ul class="ohnaju-sixth-show">
  				<li class="ohnaju-li"><a href="${contextPath }/host/management/reviewList.do">리뷰 관리</a></li>
 
  			</ul>
  		</li>
  		
- 		<li class="ohnaju-li"><a href="#" class="ohnaju-seventh-btn"><i style="color:#7f9b75" class="fa-solid fa-paste"></i>&emsp;고객 센터</a>
+ 		<li class="ohnaju-li"><a href="#" class="ohnaju-seventh-btn"><i style="color:#edbc40" class="fa-solid fa-paste"></i>&emsp;고객 센터</a>
  			<ul class="ohnaju-seventh-show">
  				<li class="ohnaju-li"><a href="${contextPath }/host/center/noticeBoard.do">공지사항</a></li>
  				<li class="ohnaju-li"><a href="${contextPath }/host/center/markRequest.do">인증마크 신청</a></li>
