@@ -57,6 +57,7 @@ public class HostGoodsControllerImpl extends BaseController implements HostGoods
 		return mav;
 	}
 
+	
 	private void addGoodsInQuick(String room_code, HostGoodsVO hostgoodsVO, HttpSession session) {
 		boolean already_existed = false;
 		List<HostGoodsVO> quickGoodsList; // �ֱ� �� ��ǰ ���� ArrayList

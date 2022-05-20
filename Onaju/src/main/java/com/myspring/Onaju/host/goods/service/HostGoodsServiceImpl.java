@@ -39,13 +39,12 @@ public class HostGoodsServiceImpl implements HostGoodsService{
 		Map hostgoodsMap=new HashMap();
 		HostGoodsVO hostgoodsVO = goodsDAO.selectGoodsDetail(room_code);
 		hostgoodsMap.put("goodsVO", hostgoodsVO);
-		/*
-		 * List<HostImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(room_code);
-		 * hostgoodsMap.put("imageList", imageList);
-		 */
+		
+		 List<HostImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(room_code);
+		 hostgoodsMap.put("imageList", imageList);
+		
 		return hostgoodsMap;
 	}
-
 	
 	
 	/* 이정아 작성 */

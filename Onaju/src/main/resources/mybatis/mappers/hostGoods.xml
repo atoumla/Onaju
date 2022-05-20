@@ -22,7 +22,7 @@
 	</resultMap>	
 	
 	<resultMap id="goodsResult" type="HostGoodsVO">
-		
+			<result property="h_name" column="h_name" />
 		<result property="hostInfo_name" column="hostInfo_name" />
 		<result property="zipcode" column="zipcode" />
 		<result property="roadAddress" column="roadAddress" />
@@ -97,7 +97,12 @@
 	<!-- 상품상세 조회 -->
 	<select id="hostGoodsDetail" resultMap="goodsResult"  parameterType="String"  >
 	    <![CDATA[
-				select * from h_room R left join h_host_info H on R.h_code=H.h_code  where room_code= #{room_code}
+				select *, T.h_name, F.room_imageName from h_room R , h_roomimage F, h_host_info H , h_host T 
+				where F.room_imageType = 'main_image'
+				and R.room_code= #{room_code}
+				and F.room_code = R.room_code
+				and R.h_code=H.h_code
+				and R.h_id = T.h_id 
 		]]>
 	</select>
 	
@@ -196,6 +201,16 @@
      			where  room_code = #{room_code}
       			order by roomImage_NO asc
 		    	
+    	]]>
+	</select>
+	
+	<select id="selectHostGoodsDetailImage" resultMap="imageResult"   parameterType="String"  >
+	    <![CDATA[
+		    	select g.room_code,d.*, d.room_imageType from h_room g, h_roomimage d
+	        where g.room_code=d.room_code
+	        and d.room_code=#{room_code}
+	       
+	       
     	]]>
 	</select>
 	

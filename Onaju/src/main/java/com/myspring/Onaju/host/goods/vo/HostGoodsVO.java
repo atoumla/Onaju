@@ -16,7 +16,7 @@ public class HostGoodsVO {
 	private String restAddress;
 	private String host_type;
 	private String room_count;
-	
+	private String h_name;
 	private int room_code;
 	private int h_code;
 	private String h_id;
@@ -83,6 +83,16 @@ public class HostGoodsVO {
 
 	public int getH_accountNum() {
 		return h_accountNum;
+	}
+
+
+	public String getH_name() {
+		return h_name;
+	}
+
+
+	public void setH_name(String h_name) {
+		this.h_name = h_name;
 	}
 
 
