@@ -176,7 +176,9 @@ function fn_modify_goods(room_code, attribute){
 		}
 	}); //end ajax	
 }  
- 
+
+</script>
+<script>
 
 
   function readURL(input,preview) {
@@ -194,15 +196,16 @@ function fn_modify_goods(room_code, attribute){
   function fn_addFile(){
 	  $("#d_file").append("<br>"+"<input  type='file' name='detail_image"+cnt+"' id='detail_image"+cnt+"'  onchange=readURL(this,'previewImage"+cnt+"') />");
 	  $("#d_file").append("<img  id='previewImage"+cnt+"'   width=200 height=200  />");
-	  $("#d_file").append("<input  type='button' value='추가'  onClick=addNewImageFile('detail_image"+cnt+"','${imageFileList[0].room_code}','detail_image')  />");
+	  $("#d_file").append("<input  type='button' value='추가' style='width:80px; border: 1px solid #464748a6; margin-left: 10px;' onClick=addNewImageFile('detail_image"+cnt+"','${goods.h_code}','${imageFileList[0].room_code}','detail_image')  />");
 	  cnt++;
   }
   
-  function modifyImageFile(fileId, room_code, roomImage_NO, room_imageType){
+  function modifyImageFile(fileId, h_code, room_code, roomImage_NO, room_imageType){
     // alert(fileId);
 	  var form = $('#FILE_FORM')[0];
       var formData = new FormData(form);
       formData.append("room_imageName", $('#'+fileId)[0].files[0]);
+      formData.append("h_code", h_code);
       formData.append("room_code", room_code);
       formData.append("roomImage_NO", roomImage_NO);
       formData.append("room_imageType", room_imageType);
@@ -220,13 +223,14 @@ function fn_modify_goods(room_code, attribute){
   }
   
   
-  function addNewImageFile(fileId,room_code, room_imageType){
+  function addNewImageFile(fileId, h_code, room_code, room_imageType){
 	   //  alert(fileId);
 		  var form = $('#FILE_FORM')[0];
 	      var formData = new FormData(form);
 	      formData.append("uploadFile", $('#'+fileId)[0].files[0]);
+	      formData.append("h_code", h_code);
 	      formData.append("room_code", room_code);
-	      formData.append("room_imageType", fileType);
+	      formData.append("room_imageType", room_imageType);
 	      
 	      $.ajax({
 	          url: '${contextPath}/host/goods/addNewHostGoodsImage.do',
@@ -262,6 +266,20 @@ function fn_modify_goods(room_code, attribute){
     		}
     	}); //end ajax	
   }	  
+  
+  
+  
+  
+  function deleteHostGoods(){
+		
+		if(!confirm("삭제 하시겠습니까?")){
+			return false;
+		}else{
+			location.href="${pageContext.request.contextPath }/host/goods/deleteHostGoods.do?room_code=${goods.room_code}";
+		}
+	}
+  
+  
 </script>
 
 <style>
@@ -280,7 +298,7 @@ table {
 section.host_notice {
 	width : 900px;
 	padding: 0 auto;
-	height: 1000px;
+	height: 1200px;
 	margin-left: 50px;
 }
 
@@ -556,7 +574,30 @@ ul{list-style:none;}
 }
 
 
+.th-date_detail{
+	color: #403e3f;
+	text-align: center;
+	
+}
 
+.imageFile {
+	width:100%
+	}
+	
+
+.file_modi_box{
+	display: inline-block;
+	width:50%;
+	margin-left: 10px;
+}
+
+.file_modi{
+	width:80px;
+	border: 1px solid #464748a6;
+    margin-right: 10px;
+	
+}
+	
 </style>
 
 </head>
@@ -705,7 +746,7 @@ ul{list-style:none;}
 					</table>	
 					<div class="noticeBtn2Box">
 						<button type="submit" class="noticeBtn2 btn-dark2" onClick="fn_modify_goods(this.form)">수정</button>
-						<button type="submit" class="noticeBtn2 btn-dark2" onClick="deleteImageFile('${goods.room_code}','${goods.roomImage_NO}','${goods.room_imageName}','${itemNum.count-1}')">삭제</button> 
+						<button type="button" class="noticeBtn2 btn-dark2" id="modityHost" onClick="deleteHostGoods()">삭제</button>
 						
 					</div>
 				</div>				
@@ -1073,35 +1114,29 @@ ul{list-style:none;}
 										<c:choose>
 											<c:when test="${item.room_imageType == 'main_image' }">
 												<th class="th-date">메인 이미지</th>
-													<td class="td-date-writer" colspan="5">
-														<input type="file"  id="main_image"  name="main_image"  onchange="readURL(this,'preview${itemNum.count}');" />
-								    					  <%-- <input type="text" id="image_id${itemNum.count }"  value="${item.fileName }" disabled  /> --%>
-														 <input type="hidden"  name="roomImage_NO" value="${item.roomImage_NO}"  />
-														<br>
-													</td>
-													<td>
+													<td class="td-date-writer" colspan="7">
 													  <img id="preview${itemNum.count }" width=200 height=200 src="${contextPath}/download.do?room_code=${item.room_code}&fileName=${item.room_imageName}" />
+													  	<div class="file_modi_box">
+														  	<input type="file" class="imageFile" id="main_image"  name="main_image"  onchange="readURL(this,'preview${itemNum.count}');" />
+															<input type="hidden"  name="roomImage_NO" value="${item.roomImage_NO}"  />
+														  	<br>
+													  		<input  type="button" class="file_modi" value="수정"  onClick="modifyImageFile('main_image','${item.h_code}','${item.room_code}','${item.roomImage_NO}','${item.room_imageType}')"/>
+														</div>
 													</td>
-													 <td>
-													  <input  type="button" value="수정"  onClick="modifyImageFile('main_image','${item.room_code}','${item.roomImage_NO}','${item.room_imageType}')"/>
-													</td> 
 											</c:when>
 				        					<c:otherwise>
 								          		 <tr  id="${itemNum.count-1}">
-													<td class="th-date">상세 이미지${itemNum.count-1 }</td>
-													<td class="td-date-writer" colspan="5">
-														<input type="file" name="detail_image"  id="detail_image"   onchange="readURL(this,'preview${itemNum.count}');" />
-														<%-- <input type="text" id="image_id${itemNum.count }"  value="${item.fileName }" disabled  /> --%>
-														<input type="hidden"  name="roomImage_NO" value="${item.roomImage_NO }"  />
-														<br>
+													<td class="th-date_detail" style="color:#403e3f;" >상세 이미지${itemNum.count-1 }</td>
+													<td class="td-date-writer" colspan="7">
+													   <img  id="preview${itemNum.count }"  width=200 height=200 src="${contextPath}/download.do?room_code=${item.room_code}&fileName=${item.room_imageName}">
+													  	<div class="file_modi_box">
+														  	<input type="file"  class="imageFile" name="detail_image"  id="detail_image"   onchange="readURL(this,'preview${itemNum.count}');" />
+															<input type="hidden"  name="roomImage_NO" value="${item.roomImage_NO }"  />
+													  	
+														  	<input  type="button" class="file_modi" value="수정"  onClick="modifyImageFile('detail_image','${item.h_code}','${item.room_code}','${item.roomImage_NO}','${item.room_imageType}')"/>
+														 	<input  type="button" class="file_modi" value="삭제"  onClick="deleteImageFile('${item.room_code}','${item.roomImage_NO}','${item.room_imageName}','${itemNum.count-1}')"/>
+														</div>
 													</td>
-													<td>
-													  <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?room_code=${item.room_code}&fileName=${item.room_imageName}">
-													</td>
-													 <td>
-													 	<input  type="button" value="수정"  onClick="modifyImageFile('detail_image','${item.room_code}','${item.roomImage_NO}','${item.room_imageType}')"/>
-													 	<input  type="button" value="삭제"  onClick="deleteImageFile('${item.room_code}','${item.roomImage_NO}','${item.room_imageName}','${itemNum.count-1}')"/>
-													</td> 
 												</tr>
 				         					</c:otherwise>
 				       					</c:choose>
@@ -1110,22 +1145,17 @@ ul{list-style:none;}
 				       				 <tr align="center">
 								      <td colspan="3">
 									      <div id="d_file">
-											  <%-- <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${item.goods_id}&fileName=${item.fileName}" /> --%>
 									      </div>
 								       </td>
 								    </tr>
 			       					<tr>
 			       						<th class="th-date">이미지 추가하기</th>
 		   		  						<td align=center >
-		    					 			<input   type="button" value="추가"  onClick="fn_addFile()"  />
+		    					 			<input type="button" style="height: 50px;  width: 80%;" value="추가"  onClick="fn_addFile()"  />
 		    					 		</td>
 		    					 	</tr>
 								</thead>
 							</table>
-							<div class="noticeBtn2Box">
-								<button type="submit" class="noticeBtn2 btn-dark2"  onClick="fn_modify_member_info(this.form)">수정</button>
-								<button type="submit" class="noticeBtn2 btn-dark2" onClick="deleteImageFile('${goods.room_code}','${goods.roomImage_NO}','${goods.room_imageName}','${itemNum.count-1}')">삭제</button>
-							</div>
 						</form>
 					</div> 
 				</li>
