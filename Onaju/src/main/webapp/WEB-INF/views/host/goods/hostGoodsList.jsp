@@ -174,7 +174,7 @@ section.host_notice {
 }
 .noticeBtn2 {
 	display: inline-block;
-	padding: 5px 30px;
+	padding: 5px 10px;
 	margin: 30px 0 30px 0px;
 	float : right;
 	font-size: 16px;
@@ -262,6 +262,59 @@ section.host_notice {
     
 }
 
+#page_wrap {
+	margin: 10px auto 50px;
+	padding: 0px;
+	width: 400px;
+}
+
+ul#page_control {
+	list-style: none;
+	padding: 0px;
+	font-size: 11px;
+}
+
+ul#page_control li {
+	padding: 0px 5px;
+	float: left;
+	color:#7f9b75;
+}
+
+ul#page_control li a {
+	padding: 2px 5px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius:3px;
+	border-image: none;
+	display: block;
+	color:#7f9b75;
+}
+
+ul#page_control li a:hover {
+	border: 1px solid #edbc40;
+	border-image: none;
+	color: #edbc40;
+}
+
+ul#page_control li a.no_border {
+	border: currentColor;
+	border-image: none;
+	padding-top: 3px;
+	color: #7f9b75;
+}
+
+.active {
+	color: rgb(255, 0, 0);
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+ul#page_control li .page_contrl_active {
+	background: rgb(255, 255, 255);
+	border: 1px solid #edbc40;
+	border-image: none;
+	color: #edbc40;
+}
+
 </style>
 </head>
 
@@ -325,11 +378,28 @@ section.host_notice {
 										</c:forEach>
 									</c:when>
 								</c:choose>
-							</tbody>
+							</tbody>	
 						</table>
-							<div>
-								<button type="submit" class="noticeBtn2 btn-dark2" onClick="${contextPath}/host/goods/addNewGoodsForm.do">글쓰기</button>
-							</div>
+						 <div id="page_wrap">
+							<ul id="page_control">
+								<li><a class="no_border" href="${contextPath}/host/goods/adminGooodsMain.do?chapter=${section+1}&pageNum=${section*10-1}">Prev</a></li>
+								<c:set var="page_num" value="0" />
+								<c:forEach var="section" begin="1" end="10" step="1">
+									<c:choose>
+										<c:when test="${section==1 }">
+											<li><a class="page_contrl_active" href="${contextPath}/host/goods/adminGoodsMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">${section+page_num*10 }</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="${contextPath}/host/goods/adminGoodsMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">${section+page_num*10 }</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<li><a class="no_border" href="${contextPath}/host/goods/adminGooodsMain.do?chapter=${section+1}&pageNum=${section*10+1}">Next</a></li>
+							</ul>
+						</div> 
+						<div>
+							<button type="submit" class="noticeBtn2 btn-dark2" onclick="location.href='${contextPath}/host/goods/addNewGoodsForm.do'">신규 등록</button>
+						</div>
 					</div>
 				</div>
 				</div>

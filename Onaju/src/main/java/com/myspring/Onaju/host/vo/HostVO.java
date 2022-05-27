@@ -31,8 +31,8 @@ public class HostVO {
 	private String h_service_02;
 	private String h_imageName;
 	private String h_imageType;
-	private String joinDate;
-	private Date del_yn;
+	private Date joinDate;
+	private String del_yn;
 	private String salt;
 	
 	public HostVO() {
@@ -247,19 +247,19 @@ public class HostVO {
 		this.h_imageType = h_imageType;
 	}
 
-	public String getJoinDate() {
+	public Date getJoinDate() {
 		return joinDate;
 	}
 
-	public void setJoinDate(String joinDate) {
+	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
 
-	public Date getDel_yn() {
+	public String getDel_yn() {
 		return del_yn;
 	}
 
-	public void setDel_yn(Date del_yn) {
+	public void setDel_yn(String del_yn) {
 		this.del_yn = del_yn;
 	}
 
@@ -270,6 +270,8 @@ public class HostVO {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
+
+	
 	
 	}
 

@@ -31,6 +31,7 @@ public interface HostGoodsController {
             HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	/* 상품 관련 */
 	public ModelAndView addNewGoodsForm (HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 	public ModelAndView addNewGoods(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	public void addNewGoodsImage(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	
@@ -42,4 +43,6 @@ public interface HostGoodsController {
 	public void addNewHostGoodsImage(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	public void  removeHostGoodsImage(@RequestParam("room_code") int room_code,@RequestParam("roomImage_NO") int roomImage_NO, @RequestParam("room_imageName") String room_imageName,
 			HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public ResponseEntity deleteHostGoods( @RequestParam("room_code") int room_code, 
+            HttpServletRequest request, HttpServletResponse response)  throws Exception;
 }

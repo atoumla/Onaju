@@ -26,6 +26,7 @@ public interface HostGoodsDAO {
 	public void updateHostInfo(Map hostInfoMap) throws DataAccessException;
 	public void deleteHostInfo(int h_code) throws DataAccessException;
 	
+	
 	/* 상품관련 */
 	public int insertNewGoods(Map newGoodsMap) throws DataAccessException;
 	public void insertGoodsImageFile(List fileList)  throws DataAccessException;
@@ -36,5 +37,7 @@ public interface HostGoodsDAO {
 	public void updateHostGoodsImage(List<HostImageFileVO> imageFileList) throws DataAccessException;
 	public void insertHostGoodsImageFile(List fileList)  throws DataAccessException;
 	public void deleteHostGoodsImage(int roomImage_NO) throws DataAccessException;
+	public void deleteHostGoodsAllImage(int room_code) throws DataAccessException;
+	public void deleteHostGoods(int room_code) throws DataAccessException;
 		
 }

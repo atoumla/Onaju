@@ -34,14 +34,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/host/center/markRequest.jsp" />
 	</definition>
 	
-	<definition name="/host/center/dropOut" extends="hostLayout">
-		<put-attribute name="title" value="호스트탈퇴" />
-		<put-attribute name="body" value="/WEB-INF/views/host/center/dropOut.jsp" />
-	</definition>
-	<definition name="/host/center/dropOutResult" extends="hostLayout">
-		<put-attribute name="title" value="호스트탈퇴결과" />
-		<put-attribute name="body" value="/WEB-INF/views/host/center/dropOutResult.jsp" />
-	</definition>
+	
 	
 </tiles-definitions>
 

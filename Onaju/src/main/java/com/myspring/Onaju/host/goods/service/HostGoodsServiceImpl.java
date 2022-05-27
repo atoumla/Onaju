@@ -80,6 +80,8 @@ public class HostGoodsServiceImpl implements HostGoodsService{
 	
 
 	/* 상품 관련 */ /* 등록 */
+	
+	
 	@Override
 	public int addNewGoods(Map newGoodsMap) throws Exception {
 		int room_code = goodsDAO.insertNewGoods(newGoodsMap);
@@ -139,6 +141,17 @@ public class HostGoodsServiceImpl implements HostGoodsService{
 	@Override
 	public void removeHostGoodsImage(int roomImage_NO) throws Exception{
 		goodsDAO.deleteHostGoodsImage(roomImage_NO);
+	}
+	
+	
+	@Override
+	public void deleteHostGoodsAllImage(int room_code) throws Exception {
+		goodsDAO.deleteHostGoodsAllImage(room_code);
+		
+	}
+	@Override
+	public void deleteHostGoods(int room_code) throws Exception {
+		goodsDAO.deleteHostGoods(room_code);
 	}
 	
 

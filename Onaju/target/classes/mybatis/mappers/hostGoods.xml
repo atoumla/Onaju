@@ -74,7 +74,7 @@
 		<result property="room_code" column="room_code" />
 		<result property="room_imageName" column="room_imageName" />
 		<result property="room_imageType" column="room_imageType" />
-		<result property="h_id" column="h_id" />
+		<result property="h_code" column="h_code" />
 		
 	</resultMap>
 
@@ -173,7 +173,6 @@
             where h_id = #{h_id}
     	]]>
 	</select>
-	
 
 	<!-- 상품목록 검색 -->
 	<select id="selectGoodsList" resultMap="goodsResult"  parameterType="String"  >
@@ -220,6 +219,11 @@
 	  <!-- <selectKey resultType="int" keyProperty="h_code" order="BEFORE"> 
 	 
 			SELECT  MAX(h_code)+1 FROM h_host_info
+			
+			
+			
+			
+			
 		 </selectKey>   -->
 	  <![CDATA[
 	    	insert into h_host_info(
@@ -248,7 +252,9 @@
 	                                   )
 	                                  
 	                                      
-	   ]]>      
+	   ]]>    
+	   
+	     
   </insert>
 	<!-- 상품 등록(한거)-->	
 	<insert id="insertNewGoods" parameterType="java.util.Map"  >
@@ -258,8 +264,7 @@
 		    </selectKey>  
 	    
 	    <![CDATA[
-		   insert into h_room(  
-				                h_code, 
+		   insert into h_room(  h_code, 
 		                  		h_id,
 		                   		room_type,
 		                    	room_number,
@@ -293,10 +298,7 @@
 								smoking,
 		                    	content
 		                    	)
-		                    	
-    				  
-				    				  			values  (   
-							    				  			#{h_code},
+				    				  			values  (   #{h_code},
 															#{h_id},
 															#{room_type},
 															#{room_number},
@@ -460,7 +462,7 @@
 		update h_roomImage
 		set room_imageName = #{room_imageName}
 		where	 
-		room_code =# {room_code} and roomImage_NO =# {roomImage_NO}
+		room_code = #{room_code} and roomImage_NO = #{roomImage_NO}
 	</update>
 	
 	<insert id="insertHostGoodsImageFile" parameterType="hostImageFileVO"   >
@@ -486,6 +488,18 @@
 	  where roomImage_NO=#{roomImage_NO}
 	</delete>
 	
+	
+	<delete id="deleteHostGoodsAllImage" parameterType="int">
+	  delete from h_roomImage
+	  where room_code=#{room_code}
+	</delete>
+	
+	
+	
+	<delete id="deleteHostGoods" parameterType="int">
+	  delete from h_room
+	  where room_code=#{room_code}
+	</delete>
 	
    
 </mapper>

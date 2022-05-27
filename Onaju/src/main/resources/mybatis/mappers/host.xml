@@ -26,8 +26,8 @@
 		
 		<result property="h_sellerNum" column="h_sellerNum" />
 		
-		
-		
+		<result property="h_imageName" column="h_imageName" />
+		<result property="h_imageType" column="h_imageType" />
 		<result property="h_agree_1" column="h_agree_1" />
 		<result property="h_agree_2" column="h_agree_2" />
 		<result property="h_agree_3" column="h_agree_3" />
@@ -57,6 +57,9 @@
 							numberAddress,
 							restAddress,
 							h_sellerNum,
+							h_imageName,
+							h_imageType,
+							
 							h_agree_1,
 							h_agree_2,
 							h_agree_3,

@@ -153,6 +153,15 @@ public class HostGoodsDAOImpl implements HostGoodsDAO{
 		sqlSession.delete("mapper.hostGoods.deleteHostGoodsImage",roomImage_NO);
 	}
 	
+	@Override
+	public void deleteHostGoodsAllImage(int room_code) throws DataAccessException {
+		sqlSession.delete("mapper.hostGoods.deleteHostGoodsAllImage",room_code);
+	}
+
+	@Override
+	public void deleteHostGoods(int room_code) throws DataAccessException {
+		sqlSession.delete("mapper.hostGoods.deleteHostGoods",room_code);
+	}
 
 	
 	

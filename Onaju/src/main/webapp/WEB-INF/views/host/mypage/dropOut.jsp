@@ -36,6 +36,10 @@
 @charset "utf-8";
 
 
+.form_txtInput{
+	text-align: center;
+}
+
  
 .red_txt {
 	color: #ee7272;
@@ -116,6 +120,7 @@
 .join_form table {
 	border-spacing: 0;
 	margin: 0;
+	margin-left:200px;
 	padding: 0;
 	border: 0;
 	width: 50%;

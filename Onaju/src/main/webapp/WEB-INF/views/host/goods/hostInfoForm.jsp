@@ -68,7 +68,13 @@
 					}
 				}).open();
 	}
-</script>
+
+	
+	
+	
+	
+	
+	</script>
 
 
 <style>
@@ -334,12 +340,12 @@ section.host_notice {
 										<tr>
 											<th class="th-title">사업자 등록번호</th>
 											<td class="notice_title" colspan="2"><input type="text" name="h_sellerNum" id="h_sellerNum"></td>
-											<td class="notice_title" ><input type="button" class="search_button" value="등록번호 확인" onclick="f()"></td>
+											<td class="notice_title" ><input type="button" class="search_button" id="h_sellerNumch" value="등록번호 확인" onclick="h_sellerNumCheck()"></td>
 										</tr>
 										<tr>
 											<th class="th-title">계좌번호</th>
 											<td class="notice_title" colspan="2"><input type="text" name="h_accountNum" id="h_accountNum"></td>
-											<td class="notice_title" ><input type="button" class="search_button" value="계좌번호 확인" onclick="f()"></td>
+											<td class="notice_title" ><input type="button" class="search_button" id="" value="계좌번호 확인" onclick="f()"></td>
 										</tr>
 										
 										<tr>
@@ -365,7 +371,7 @@ section.host_notice {
 						</div> 
 					</div>
 					<div class="noticeBtn2Box">
-						<button type="submit" class="noticeBtn2 btn-dark2" onClick="${contextPath}/host/goods/hostInfoList.do">목록</button>
+						<button type="button" class="noticeBtn2 btn-dark2" onclick="location.href='${contextPath}/host/goods/hostInfoList.do'">목록</button>
 						<button type="submit" class="noticeBtn2 btn-dark2">등록</button>
 					</div>		
 				</form>

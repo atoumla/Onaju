@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등록 객실 목록</title>
+<title>사업장 목록</title>
 <style>
 @charset "utf-8";
 table {
@@ -174,7 +174,7 @@ section.host_notice {
 }
 .noticeBtn2 {
 	display: inline-block;
-	padding: 5px 30px;
+	padding: 5px 10px;
 	margin: 30px 0 30px 0px;
 	float : right;
 	font-size: 16px;
@@ -270,7 +270,7 @@ section.host_notice {
 	<section class="host_notice">
 		<div class="host-title">
 			<div class="host_contai">
-				<h3>등록 객실 목록</h3>
+				<h3>사업장 목록</h3>
 			</div>
 		</div>
 
@@ -322,7 +322,7 @@ section.host_notice {
 							</tbody>
 						</table>
 							<div>
-								<button type="submit" class="noticeBtn2 btn-dark2" onClick="${contextPath}/host/goods/hostInfoForm.do">신규 등록</button>
+								<button type="button" class="noticeBtn2 btn-dark2" onclick="location.href='${contextPath}/host/goods/hostInfoForm.do'">신규 등록</button>
 							</div>
 					</div>
 				</div>

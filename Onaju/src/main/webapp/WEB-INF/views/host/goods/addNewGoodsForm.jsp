@@ -492,7 +492,7 @@ ul{list-style:none;}
 								</thead>
 							</table>	
 							<div class="noticeBtn2Box">
-								<button type="submit" class="noticeBtn2 btn-dark2" onClick="fn_add_new_goods(this.form)">등록</button>
+								<button type="button" class="noticeBtn2 btn-dark2" onClick="">등록</button>
 							</div>
 						</div>
 				</li>
@@ -666,7 +666,7 @@ ul{list-style:none;}
 							</thead>					
 						</table>
 						<div class="noticeBtn2Box">
-							<button type="submit" class="noticeBtn2 btn-dark2" onClick="fn_add_new_goods(this.form)">등록</button>
+							<button type="button" class="noticeBtn2 btn-dark2" onClick="">등록</button>
 						</div>
 					</div> 
 				</li>

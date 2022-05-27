@@ -4,9 +4,18 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
 
-	<definition name="/host/mypage/mypage" extends="hostLayout">
-		<put-attribute name="title" value="호스트 상품 목록" />
-		<put-attribute name="body" value="/WEB-INF/views/host/mypage/mypage.jsp" />
+	<definition name="/host/mypage/hostMypageDetail" extends="hostLayout">
+		<put-attribute name="title" value="호스트 회원정보 수정" />
+		<put-attribute name="body" value="/WEB-INF/views/host/mypage/hostMypageDetail.jsp" />
+	</definition>
+	
+	<definition name="/host/mypage/dropOut" extends="hostLayout">
+		<put-attribute name="title" value="호스트탈퇴" />
+		<put-attribute name="body" value="/WEB-INF/views/host/mypage/dropOut.jsp" />
+	</definition>
+	<definition name="/host/mypage/dropOutResult" extends="hostLayout">
+		<put-attribute name="title" value="호스트탈퇴결과" />
+		<put-attribute name="body" value="/WEB-INF/views/host/mypage/dropOutResult.jsp" />
 	</definition>
 	
 	<!-- <definition name="/host/mypage/hostInfoForm" extends="hostLayout">
